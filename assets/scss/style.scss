@@ -1,0 +1,46 @@
+@import './globals/fonts';
+@import './globals/mixin';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "regular", sans-serif;
+  background: var(--black);
+  overflow-x: hidden;
+}
+
+:root {
+  --white: #fff;
+  --black: #000;
+  --yellow: #FEC33F;
+  --darkyellow: #FBAE3C;
+  --red: #A02320;
+  --red2: #AE1830;
+  --darkred: #5B1412;
+  --whitetransparent: #FFFFFF52;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+@import './globals/header';
+@import './globals/footer';
+@import './pages/home/home';

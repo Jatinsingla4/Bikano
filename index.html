@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikano</title>
+    <link rel="stylesheet" href="./assets/scss/style.css">
+</head>
+<body>
+
+    <main>
+
+        <!-------============HEADER====START==============---------->
+    
+        <header class="header">
+            <div class="header__logo">
+                <a href="./index.html">
+                    <img src="./assets/images/logo.svg" alt="Bikano">
+                </a>
+            </div>
+
+            <button class="header__toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="header__nav">
+                <ul class="header__menu">
+                    <li><a href="./index.html" class="active">HOME</a></li>
+                    <li><a href="#">OUR RANGE</a></li>
+                    <li><a href="#">OUR STORY</a></li>
+                    <li><a href="#">REACH US</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-------============HEADER====END==============---------->
+
+        <!-------============BANNER====START==============---------->
+
+        <section class="home-banner">
+            <div class="home-banner__video">
+                <video id="bannerVideo" src="./assets/video/banner_video.mp4" muted loop playsinline preload="auto"></video>
+            </div>
+
+            <div class="home-banner__overlay" id="bannerOverlay"></div>
+
+            <button class="play-btn" id="playBtn" aria-label="Play video" aria-pressed="false">
+                <img src="./assets/images/play.svg" alt="Play">
+            </button>
+
+            <div class="floating-actions">
+                <a href="https://wa.me/" class="floating-actions__item floating-actions__item--whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <img src="./assets/images/whatsapp.svg" alt="WhatsApp">
+                </a>
+                <a href="#" class="floating-actions__item floating-actions__item--cart" aria-label="Cart">
+                    <img src="./assets/images/cart.svg" alt="Cart">
+                </a>
+            </div>
+        </section>
+
+        <!-------============BANNER====END==============---------->
+
+
+        <!-------============FOOTER====START==============---------->
+
+        <footer class="footer">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="./index.html" class="footer__logo">
+                        <img src="./assets/images/logo.svg" alt="Bikano">
+                    </a>
+
+                    <div class="footer__tagline">
+                        <img src="./assets/images/footer_left_box_img.png" alt="Stay Crunchy">
+                    </div>
+
+                    <ul class="footer__contact">
+                        <li>
+                            <span class="footer__contact-icon" aria-hidden="true">
+                                <img src="./assets/images/mail.png" alt="">
+                            </span>
+                            <a href="mailto:customercare@bikano.com">Email - customercare@bikano.com</a>
+                        </li>
+                        <li>
+                            <span class="footer__contact-icon" aria-hidden="true">
+                                <img src="./assets/images/call.png" alt="">
+                            </span>
+                            <a href="tel:9871590661">Call - 98715-90661</a>
+                        </li>
+                        <li>
+                            <span class="footer__contact-icon" aria-hidden="true">
+                                <img src="./assets/images/whatsapp.png" alt="">
+                            </span>
+                            <a href="https://wa.me/911234567890" target="_blank" rel="noopener noreferrer">WhatsApp - 12345 67890</a>
+                        </li>
+                    </ul>
+
+                    <div class="footer__social">
+                        <a href="#" aria-label="YouTube">
+                            <img src="./assets/images/youtube.svg" alt="YouTube">
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <img src="./assets/images/insta.svg" alt="Instagram">
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <img src="./assets/images/facebook.svg" alt="Facebook">
+                        </a>
+                        <a href="#" aria-label="X">
+                            <img src="./assets/images/x.svg" alt="X">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__location">
+                    <div class="footer__map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.1999830053123!2d77.14476328311035!3d28.683663812818185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d017f3a0a9a4d%3A0x69acacba9674ddbb!2sBikanervala%20Corporate%20office!5e0!3m2!1sen!2sin!4v1703067830132!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bikanervala Corporate office"></iframe>
+                    </div>
+
+                    <div class="footer__address">
+                        <h3>Head Office</h3>
+                        <p>Bikanervala Foods Pvt. Ltd.</p>
+                        <p>A-28, Lawrence Road, Industrial Area,</p>
+                        <p>New Delhi, 110035</p>
+                    </div>
+                </div>
+
+                <div class="footer__links">
+                    <div class="footer__links-group">
+                        <h3>Website</h3>
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li><a href="#">Our Products</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Reach Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__links-group">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>Bikano © 2026 | All rights reserved | Powered by Bikanervala Foods Pvt. Ltd.</p>
+            </div>
+        </footer>
+        
+        <!-------============FOOTER====END==============---------->
+
+    </main>
+    
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
