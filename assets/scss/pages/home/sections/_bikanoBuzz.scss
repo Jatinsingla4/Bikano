@@ -1,0 +1,203 @@
+.bikano-buzz {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-image: url("../images/BikanoBuzz.png");
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 80px 0 112px;
+
+  @include tab {
+    padding: 48px 0 60px;
+  }
+
+  @include mobile {
+    padding: 36px 0 44px;
+  }
+
+  &__container {
+    width: 100%;
+    max-width: calc(100% - 128px);
+    margin: 0 auto;
+
+    @include tab {
+      max-width: calc(100% - 48px);
+    }
+
+    @include mobile {
+      max-width: calc(100% - 32px);
+    }
+  }
+
+  &__header {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 88px;
+
+    @include mobile {
+      margin-bottom: 28px;
+      gap: 6px;
+    }
+  }
+
+  &__title {
+    @include heading-style(64px, bold, var(--yellow));
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    @include tab {
+      @include font-size(44px);
+    }
+
+    @include lessTab {
+      @include font-size(36px);
+    }
+
+    @include mobile {
+      @include font-size(26px);
+      white-space: normal;
+    }
+  }
+
+  &__badge {
+    display: block;
+    flex-shrink: 0;
+    width: 96px;
+    margin-top: 4px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @include tab {
+      width: 72px;
+    }
+
+    @include mobile {
+      width: 54px;
+      margin-top: 2px;
+    }
+  }
+
+  &__marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__swiper {
+    width: 100%;
+    overflow: visible;
+
+    .swiper-wrapper {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      gap: 24px;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+
+      &.is-animated {
+        animation: bikano-buzz-marquee var(--marquee-duration, 40s) linear infinite;
+      }
+
+      @include mobile {
+        gap: 16px;
+      }
+    }
+
+    .swiper-slide {
+      width: auto !important;
+      flex-shrink: 0;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__card {
+    position: relative;
+    width: 210px;
+    aspect-ratio: 3 / 4.4;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--white);
+    border: 4px solid var(--white);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
+    }
+
+    @include tab {
+      width: 180px;
+      border-width: 5px;
+    }
+
+    @include mobile {
+      width: 150px;
+      border-width: 4px;
+    }
+  }
+
+  &__views {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 40px;
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    @include font-family(semibold);
+    @include font-size(12px, 1);
+    color: var(--white);
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    @include mobile {
+      left: 8px;
+      bottom: 8px;
+      padding: 3px 8px;
+      @include font-size(10px, 1);
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+}
+
+@keyframes bikano-buzz-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

@@ -1,0 +1,257 @@
+.houseBikano {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 64px 0 64px;
+  background-image: url("../images/houseBg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  @include tab {
+    padding: 56px 0 64px;
+  }
+
+  @include mobile {
+    padding: 48px 0 56px;
+  }
+
+  &__top-decor {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    width: 200px;
+    height: 100px;
+    border: 2px dashed var(--red2);
+    border-bottom: none;
+    border-radius: 200px 200px 0 0;
+    transform: translateX(-50%);
+    pointer-events: none;
+    opacity: 0.9;
+
+    @include mobile {
+      width: 140px;
+      height: 70px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 44px;
+    padding-top: 38px;
+
+    @include tab {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+  }
+
+  &__heading {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__spark {
+    position: relative;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background: var(--red2);
+      border-radius: 2px;
+    }
+
+    &::before {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      transform: translateY(-50%) rotate(-32deg);
+    }
+
+    &::after {
+      top: 0;
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      transform: translateX(-50%) rotate(14deg);
+    }
+  }
+
+  &__title {
+    @include heading-style(52px, extrabold, var(--red2));
+    letter-spacing: -0.02em;
+    line-height: 1;
+    padding-left: 63px;
+
+    @include tab {
+      @include font-size(42px);
+      padding-left: 0
+    }
+
+    @include mobile {
+      @include font-size(34px);
+    }
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    width: 72px;
+    height: 56px;
+    margin-left: 4px;
+    margin-top: 8px;
+    pointer-events: none;
+
+    @include mobile {
+      width: 56px;
+      height: 44px;
+    }
+  }
+
+  &__btn {
+   font-weight: 700;
+    @include font-size(20px, 30px);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 14px 20px 14px 32px;
+    border-radius: 8px;
+    background: var(--red2);
+    color: var(--white);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s ease;
+
+    span {
+      font-size: 20px;
+      line-height: 1;
+      @include tab{
+        line-height: 0;
+      }
+    }
+
+    &:hover {
+      background: var(--red);
+    }
+
+    @include tab {
+      width: 100%;
+      justify-content: center;
+      padding: 12px 20px;
+      font-size: 16px;
+      line-height: 26px;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    padding-top: 60px;
+
+    @include tab {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding-top: 0;
+    }
+  }
+
+  &__card {
+    position: relative;
+    background: var(--white);
+    border-radius: 24px;
+    padding: 15px 12px 60px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    height: 433px;
+    perspective: 1000px;
+    transition: box-shadow 0.4s ease, z-index 0s;
+
+    &:hover {
+      z-index: 5;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    &:hover .houseBikano__card-visual img {
+      transform: scale3d(1.4, 1.4, 1.4);
+    }
+  }
+
+  &__card-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  height: 100%;
+    border-radius: 20px;
+    overflow: visible;
+    padding: 24px 16px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform-origin: center center;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      will-change: transform;
+    }
+
+    &--tapri {
+      background: radial-gradient(53.86% 53.86% at 50% 50%, #CF2958 42.81%, #A5163E 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
+    }
+
+    &--eat-easy {
+      background: radial-gradient(60.99% 60.99% at 50% 50%, #336515 65.92%, #18402B 98.56%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
+    }
+
+    &--fatax {
+      background: radial-gradient(61.54% 61.54% at 49.92% 44.64%, #4194C7 44.99%, #2056B3 100%);
+
+    }
+
+  
+  }
+
+  &__card-name {
+    font-weight: 700;
+    @include font-size(24px, 34px);
+    margin-top: 16px;
+    color: var(--red2);
+    text-align: center;
+  
+    text-transform: uppercase;
+
+    @include mobile {
+      @include font-size(16px);
+    }
+  }
+}
+
+.houseContainer {
+  max-width: calc(100% - 128px);
+  margin: 0 auto;
+
+  @include tab {
+    max-width: calc(100% - 48px);
+  }
+
+  @include mobile {
+    max-width: calc(100% - 32px);
+  }
+}

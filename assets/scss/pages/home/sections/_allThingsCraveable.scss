@@ -1,0 +1,560 @@
+.all-things-craveable {
+  --atc-yellow: var(--yellow);
+  --atc-red: var(--red2);
+  --atc-dark-red: var(--darkred);
+  --atc-slide-scale: 0.68;
+  --atc-slide-active-scale: 1.24;
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 56px 0 0;
+  background: var(--atc-yellow);
+
+  @include tab {
+    padding-top: 44px;
+  }
+
+  @include mobile {
+    padding-top: 36px;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: calc(100% - 128px);
+    margin: 0 auto;
+
+    @include tab {
+      max-width: calc(100% - 48px);
+    }
+
+    @include mobile {
+      max-width: calc(100% - 32px);
+    }
+  }
+
+  // Decorative sparks & lightning bolts
+  &__decor {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+
+    &--speed {
+      top: 118px;
+      left: 42px;
+      width: 34px;
+      height: 22px;
+
+      &::before,
+      &::after,
+      span {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--atc-red);
+        transform: rotate(-28deg);
+      }
+
+      &::before {
+        top: 0;
+      }
+
+      span {
+        top: 9px;
+        width: 78%;
+      }
+
+      &::after {
+        top: 18px;
+        width: 56%;
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &--spark-left {
+      top: 48%;
+      left: 28px;
+      width: 18px;
+      height: 18px;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        background: var(--atc-red);
+        border-radius: 2px;
+      }
+
+      &::before {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        transform: translateY(-50%) rotate(-30deg);
+      }
+
+      &::after {
+        top: 0;
+        left: 50%;
+        width: 3px;
+        height: 100%;
+        transform: translateX(-50%) rotate(12deg);
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &--bolt-left {
+      bottom: 148px;
+      left: 56px;
+      width: 18px;
+      height: 28px;
+      background: var(--atc-red);
+      clip-path: polygon(50% 0, 68% 38%, 54% 38%, 72% 100%, 32% 48%, 46% 48%);
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &--bolt-right {
+      top: 52%;
+      right: 38%;
+      width: 16px;
+      height: 24px;
+      background: var(--atc-red);
+      clip-path: polygon(50% 0, 68% 38%, 54% 38%, 72% 100%, 32% 48%, 46% 48%);
+
+      @include tab {
+        right: 12%;
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+  }
+
+  // Perspective grid floor
+  &__floor {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    width: 140%;
+    height: 46%;
+    pointer-events: none;
+    overflow: hidden;
+    transform: translateX(-50%);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(180deg, var(--atc-yellow) 0%, rgba(254, 195, 63, 0.35) 14%, transparent 28%),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.52) 0 1px,
+          transparent 1px 78px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.52) 0 1px,
+          transparent 1px 52px
+        );
+      transform: perspective(420px) rotateX(74deg);
+      transform-origin: center top;
+    }
+  }
+
+  &__header {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    margin-bottom: 28px;
+
+    @include mobile {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__title-wrap {
+    @include flex-center(row, 10px);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__title-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 34px;
+    height: 28px;
+    margin-top: 8px;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--atc-red);
+      transform-origin: left center;
+    }
+
+    &::before {
+      top: 2px;
+      transform: rotate(-18deg);
+    }
+
+    &::after {
+      bottom: 2px;
+      width: 72%;
+      transform: rotate(-32deg);
+    }
+
+    @include mobile {
+      width: 26px;
+      height: 22px;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin: 0;
+  }
+
+  &__title-line {
+    @include font-family(semibold);
+    @include font-size(42px, 1);
+    color: var(--atc-red);
+    letter-spacing: -0.02em;
+
+    @include tab {
+      @include font-size(32px);
+    }
+
+    @include mobile {
+      @include font-size(24px);
+    }
+  }
+
+  &__title-main {
+    @include font-family(extrabold);
+    @include font-size(108px, 0.92);
+    color: var(--atc-red);
+    letter-spacing: -0.03em;
+
+    @include tab {
+      @include font-size(72px);
+    }
+
+    @include mobile {
+      @include font-size(52px);
+    }
+  }
+
+  &__toolbar {
+    position: relative;
+    z-index: 4;
+    @include flex-center(row, 18px);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+
+    @include mobile {
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__categories {
+    @include flex-center(row, 0);
+    flex-wrap: wrap;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--white);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  &__category {
+    @include font-family(medium);
+    @include font-size(14px, 1);
+    padding: 8px 16px;
+    color: #4a4a4a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--atc-red);
+    }
+
+    &.is-active,
+    &.active {
+      @include font-family(bold);
+      color: var(--atc-red);
+    }
+
+    @include mobile {
+      @include font-size(11px);
+      padding: 6px 10px;
+    }
+  }
+
+  &__cta {
+    @include font-family(bold);
+    @include font-size(14px, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 14px 22px;
+    border-radius: 10px;
+    background: var(--atc-red);
+    color: var(--white);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, transform 0.2s ease;
+
+    span,
+    svg {
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: var(--red);
+      transform: translateY(-1px);
+    }
+
+    @include mobile {
+      width: 100%;
+      justify-content: center;
+      @include font-size(12px);
+      padding: 12px 18px;
+    }
+  }
+
+  &__slider {
+    position: relative;
+    z-index: 3;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 0 24px;
+
+    @include tab {
+      padding-bottom: 16px;
+    }
+
+    @include mobile {
+      padding-bottom: 12px;
+    }
+  }
+
+  &__swiper {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 90px 0 50px;
+    overflow: hidden;
+
+    @include mobile {
+      padding: 60px 0 30px;
+    }
+
+    .swiper-wrapper {
+      align-items: flex-end;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: auto;
+      transform: scale(var(--atc-slide-scale));
+      opacity: 0.82;
+      transition:
+        transform 0.5s cubic-bezier(0.34, 1.1, 0.64, 1),
+        opacity 0.45s ease;
+      will-change: transform;
+    }
+
+    .swiper-slide-prev,
+    .swiper-slide-next {
+      z-index: 2;
+    }
+
+    .swiper-slide-active {
+      transform: scale(var(--atc-slide-active-scale));
+      opacity: 1;
+      z-index: 4;
+    }
+  }
+
+  &__slide {
+    width: 100%;
+  }
+
+  &__product {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    min-height: 340px;
+    padding: 0 8px 12px;
+    transform-style: preserve-3d;
+    perspective: 900px;
+
+    @include tab {
+      min-height: 280px;
+    }
+
+    @include mobile {
+      min-height: 220px;
+      padding-bottom: 8px;
+    }
+  }
+
+  // Namkeen burst — visible only on center (active) slide
+  &__burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    width: 132%;
+    max-width: 500px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.6);
+    transform-origin: center center;
+    transition:
+      opacity 0.5s ease,
+      transform 0.55s cubic-bezier(0.34, 1.15, 0.64, 1);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 22px 30px rgba(0, 0, 0, 0.16));
+    }
+
+    .swiper-slide-active & {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  &__packet {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 62%;
+    max-width: 240px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.2));
+    transform: translateZ(24px);
+    transition:
+      filter 0.45s ease,
+      transform 0.45s ease,
+      width 0.45s ease;
+
+    .swiper-slide-active & {
+      width: 78%;
+      max-width: 340px;
+      filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.26));
+      transform: translateZ(48px) translateY(-10px);
+    }
+
+    @include mobile {
+      max-width: 190px;
+
+      .swiper-slide-active & {
+        max-width: 230px;
+      }
+    }
+  }
+
+  &__cup {
+    display: none;
+  }
+
+  // Swiper prev / next — semi-circle edge buttons
+  &__nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 116px;
+    padding: 0;
+    border: none;
+    background: var(--atc-red);
+    color: var(--white);
+    cursor: pointer;
+
+    svg {
+      display: block;
+      width: 14px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    &--prev {
+      left: 0;
+      border-radius: 0 999px 999px 0;
+      padding-left: 6px;
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    &--next {
+      right: 0;
+      border-radius: 999px 0 0 999px;
+      padding-right: 6px;
+    }
+
+    @include tab {
+      width: 48px;
+      height: 96px;
+    }
+
+    @include mobile {
+      width: 40px;
+      height: 80px;
+
+      svg {
+        width: 11px;
+        height: 20px;
+      }
+    }
+  }
+}

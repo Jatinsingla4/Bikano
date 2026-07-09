@@ -1,0 +1,367 @@
+.caught-in-act {
+  --caught-bg: #faf5e4;
+  width: 100%;
+  background: var(--caught-bg);
+  padding: 64px 0 72px;
+
+  @include tab {
+    padding: 56px 0 64px;
+  }
+
+  @include mobile {
+    padding: 44px 0 52px;
+  }
+
+  &__container {
+    width: 100%;
+    max-width: calc(100% - 128px);
+    margin: 0 auto;
+
+    @include tab {
+      max-width: calc(100% - 48px);
+    }
+
+    @include mobile {
+      max-width: calc(100% - 32px);
+    }
+  }
+
+  &__header {
+    position: relative;
+    margin-bottom: 26px;
+
+    @include mobile {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__title {
+    position: relative;
+    display: inline-block;
+    @include heading-style(80px, var(--red2));
+    font-weight: 600;
+    line-height: 90px;
+
+    @include tab {
+      @include font-size(28px);
+      line-height: 38px;
+    }
+
+   
+  }
+
+  &__title-sub {
+    font-weight: 600;
+    @include font-size(40px);
+    color: var(--red2);
+    line-height: 50px;
+    @include tab {
+      @include font-size(24px);
+    }
+
+    @include tab {
+      display: block;
+      @include font-size(18px);
+      line-height: 28px;
+    }
+  }
+
+  &__spark {
+    position: absolute;
+    top: -14px;
+    right: -34px;
+    width: 34px;
+    height: 34px;
+    pointer-events: none;
+
+    @include mobile {
+      right: -6px;
+      top: -8px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__subtitle {
+    @include font-family(regular);
+    @include font-size(18px, 28px);
+    color: #000000;
+    margin-top: 16px;
+
+    @include mobile {
+      @include font-size(14px, 22px);
+      margin-top: 8px;
+    }
+  }
+
+  &__slider {
+    position: relative;
+  }
+
+  &__swiper {
+    width: 100%;
+    overflow: hidden;
+
+    @include mobile {
+      border-radius: 18px;
+    }
+  }
+
+  &__slide {
+    position: relative;
+    width: 100%;
+  }
+
+  &__media {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 500px;
+    border-radius: 70px;
+    overflow: hidden;
+    border: 4px solid var(--yellow);
+    background: var(--darkred);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.18) 34%,
+        rgba(0, 0, 0, 0) 60%
+      );
+      pointer-events: none;
+    }
+
+    @include tab {
+      height: 400px;
+      border-radius: 22px;
+    }
+
+    @include lessTab {
+      height: 320px;
+    }
+
+    @include mobile {
+      height: 240px;
+      border-radius: 18px;
+      border-width: 3px;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(40, 28, 22, 0.42);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+      inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.6),
+      inset -1.5px -1.5px 0 rgba(255, 255, 255, 0.25);
+    transition:
+      transform 0.3s ease,
+      background 0.3s ease;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      margin-left: 3px;
+    }
+
+    @include mobile {
+      width: 58px;
+      height: 58px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &__media:hover &__play {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: rgba(40, 28, 22, 0.58);
+  }
+
+  &__features {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    z-index: 4;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    pointer-events: none;
+
+    @include tab {
+      left: 28px;
+      gap: 18px;
+    }
+
+    @include mobile {
+      left: 16px;
+      gap: 12px;
+    }
+  }
+
+  &__feature {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 8px;
+    width: 128px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+
+    svg {
+      width: 24px;
+      height: 24px;
+      color: var(--yellow);
+    }
+
+    span {
+      @include font-family(semibold);
+      @include font-size(12px, 16px);
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    @include mobile {
+      width: 104px;
+      gap: 6px;
+      padding-bottom: 6px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      span {
+        @include font-size(9px, 12px);
+      }
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 6;
+    transform: translateY(-50%);
+    padding: 0;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease;
+
+    svg {
+      display: block;
+      width: 16px;
+      height: 27px;
+    }
+
+    &:hover {
+      transform: translateY(-50%) scale(1.12);
+    }
+
+    &--prev svg {
+      transform: rotate(180deg);
+    }
+
+    &--prev {
+      left: -40px;
+
+      @include large {
+        left: -46px;
+      }
+
+      @include tab {
+        left: -22px;
+      }
+
+      @include lessTab {
+        left: -8px;
+      }
+    }
+
+    &--next {
+      right: -40px;
+
+      @include large {
+        right: -46px;
+      }
+
+      @include tab {
+        right: -22px;
+      }
+
+      @include lessTab {
+        right: -8px;
+      }
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      margin: 0 !important;
+      border-radius: 50%;
+      background: transparent;
+      border: 1.5px solid var(--red2);
+      opacity: 1;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--red2);
+      transform: scale(1.05);
+    }
+
+    @include mobile {
+      margin-top: 16px;
+    }
+  }
+}

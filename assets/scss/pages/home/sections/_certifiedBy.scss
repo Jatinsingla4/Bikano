@@ -1,0 +1,151 @@
+.certified-by {
+  --certified-bg: #faf5e4;
+  width: 100%;
+  background: var(--certified-bg);
+  padding: 64px 0 64px;
+
+  @include tab {
+    padding: 40px 0;
+  }
+
+  
+
+  &__container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 0;
+
+    @include tab {
+      padding: 0 24px;
+    }
+
+    @include mobile {
+      padding: 0 16px;
+    }
+  }
+
+  &__title {
+    @include heading-style(40px, bold, var(--red2));
+    text-align: center;
+    margin-bottom: 48px;
+    text-shadow: 4px 4px 0 #FECE5A;
+
+    @include tab {
+      @include font-size(34px);
+      text-shadow: 3px 3px 0 #FECE5A;
+      margin-bottom: 40px;
+    }
+
+    @include mobile {
+      @include font-size(28px);
+      text-shadow: 2px 2px 0 #FECE5A;
+     
+    }
+  }
+
+  &__marquee {
+    position: relative;
+    width: 100%;
+    min-height: 72px;
+    overflow: hidden;
+  }
+
+  &__swiper {
+    width: 100%;
+    overflow: hidden;
+
+    .swiper-wrapper {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      gap: 64px;
+      will-change: transform;
+
+      @include tab {
+        gap: 48px;
+      }
+
+      @include mobile {
+        gap: 36px;
+      }
+
+      &.is-animated {
+        animation: certified-marquee-scroll var(--marquee-duration, 40s) linear infinite;
+      }
+    }
+
+    .swiper-slide {
+      width: auto !important;
+      height: auto;
+      flex-shrink: 0;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      display: block;
+      height: 56px;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
+      will-change: filter;
+      transition: filter 0.12s linear;
+
+      @include tab {
+        height: 48px;
+      }
+
+      @include mobile {
+        height: 40px;
+      }
+    }
+  }
+
+  &__fade {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    width: 12%;
+    height: 100%;
+    pointer-events: none;
+
+    &--left {
+      left: 0;
+      background: linear-gradient(
+        to right,
+        var(--certified-bg) 0%,
+        rgba(250, 245, 228, 0.6) 50%,
+        transparent 100%
+      );
+    }
+
+    &--right {
+      right: 0;
+      background: linear-gradient(
+        to left,
+        var(--certified-bg) 0%,
+        rgba(250, 245, 228, 0.6) 50%,
+        transparent 100%
+      );
+    }
+
+    @include mobile {
+      width: 16%;
+    }
+  }
+}
+
+@keyframes certified-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

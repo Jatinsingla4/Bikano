@@ -1,0 +1,327 @@
+.moments-with {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 64px 0;
+  background-image: url("../images/bikanoBG.png");
+  background-repeat: no-repeat;
+
+  background-size: 100% 100%;
+
+  @include tab {
+    padding: 40px 0;
+  }
+
+
+
+  &__decor {
+    position: absolute;
+    z-index: 1;
+    border: 2px dashed var(--yellow);
+    border-radius: 50%;
+    opacity: 0.85;
+    pointer-events: none;
+
+    &--top-left {
+      top: 28px;
+      left: -70px;
+      width: 220px;
+      height: 220px;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      transform: rotate(-18deg);
+    }
+
+    &--top-right {
+      top: 10px;
+      right: -90px;
+      width: 260px;
+      height: 260px;
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      transform: rotate(18deg);
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__spark {
+    position: relative;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background: var(--yellow);
+      border-radius: 2px;
+    }
+
+    &::before {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      transform: translateY(-50%) rotate(-28deg);
+    }
+
+    &::after {
+      top: 0;
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      transform: translateX(-50%) rotate(18deg);
+    }
+
+    &--bottom {
+      position: absolute;
+      bottom: 118px;
+      left: 72px;
+      width: 22px;
+      height: 22px;
+      z-index: 2;
+
+      @include tab {
+        left: 24px;
+        bottom: 100px;
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+  }
+
+  &__container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: calc(100% - 342px);
+    margin: 0 auto;
+
+    @include tab{
+      max-width: calc(100% - 40px);
+    }
+  }
+
+  &__header {
+    position: relative;
+    @include flex-center(column, 0);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__eyebrow-wrap {
+    @include flex-center(row, 10px);
+    margin-bottom: 2px;
+  }
+
+  &__eyebrow {
+    @include font-family(medium);
+    @include font-size(40px, 50px);
+    font-style: italic;
+    color: var(--yellow);
+    margin-bottom: 0;
+    text-shadow: 0px 2px 0px 0px var(--white);
+
+    padding-right: 12px;
+
+    @include tab {
+      @include font-size(24px);
+    }
+
+    @include mobile {
+      @include font-size(20px);
+    }
+
+    @include tab {
+      @include font-size(24px);
+    }
+
+    @include mobile {
+      @include font-size(20px);
+    }
+  }
+
+  &__title {
+    @include heading-style(80px, extrabold, var(--yellow));
+    letter-spacing: -0.02em;
+
+    @include tab {
+      @include font-size(58px);
+    }
+
+    @include mobile {
+      @include font-size(44px);
+    }
+  }
+
+  &__col {
+    min-height: 0;
+    height: 100%;
+
+    &--side {
+      .moments-with__frame {
+        height: 100%;
+      }
+    }
+
+    &--center {
+      display: grid;
+      grid-template-rows: 1.12fr 0.88fr;
+      gap: 12px;
+      min-height: 0;
+
+      @include tab {
+        gap: 10px;
+      }
+
+      @include lessTab {
+        grid-template-rows: auto auto;
+      }
+    }
+
+    @include lessTab {
+      height: auto;
+    }
+  }
+
+  &__frame {
+    margin: 0;
+    min-height: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #3a0d0b;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @include lessTab {
+      min-height: 240px;
+    }
+  }
+
+  &__order {
+    @include flex-center(row, 24px);
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 22px 0;
+
+    background: #ffffff52;
+
+    @include tab {
+      gap: 20px;
+      padding: 16px 24px;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px 18px;
+      width: 100%;
+    }
+  }
+
+  &__order-text {
+    font-weight: 600;
+    @include font-size(20px, 30px);
+    color: var(--black);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+
+    @include mobile {
+      @include font-size(15px);
+      white-space: normal;
+      text-align: center;
+    }
+  }
+
+  &__order-logos {
+    @include flex-center(row, 16px);
+    flex-wrap: wrap;
+  }
+
+  &__order-logo {
+    @include flex-center;
+    @include rounded-frame(10px, none);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    @include mobile {
+      width: 46px;
+      height: 46px;
+
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+}
+
+.momentGallery {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 60px;
+
+  @include tab{
+   flex-wrap: wrap;
+   margin-bottom: 40px;
+  }
+
+  .col-40 {
+   
+    .leftGalleryImg {
+      height: 100%;
+    }
+    
+    img {
+      height: 100%;
+    }
+
+   
+  }
+
+  .galleryRightClub {
+    display: flex;
+    gap: 14px;
+
+    .rightGalleryImg {
+      height: 100%;
+      img {
+        height: 100%;
+      }
+    }
+    .galleryclub {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      img {
+        height: 100%;
+      }
+      .topImg {
+        box-shadow: 0px 4px 6.5px 0px #ffffff40;
+      }
+      .bottomImg {
+        box-shadow: 0px 4px 6.5px 0px #ffffff40;
+      }
+    }
+  }
+}

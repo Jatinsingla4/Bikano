@@ -1,3 +1,45 @@
+$font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+);
+
+@mixin font-family($weight: regular) {
+  font-weight: map-get($font-weights, $weight);
+}
+
+@mixin font-size($size, $line-height: 1.2) {
+  font-size: $size;
+  line-height: $line-height;
+}
+
+@mixin heading-style($size, $weight: bold, $color: var(--red)) {
+  @include font-family($weight);
+  @include font-size($size);
+  color: $color;
+}
+
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin rounded-frame($radius: 16px, $border: 1px solid rgba(255, 255, 255, 0.35)) {
+  border-radius: $radius;
+  border: $border;
+  overflow: hidden;
+}
+
+@mixin text-shadow-offset($x: 4px, $y: 4px, $color: var(--yellow)) {
+  text-shadow: $x $y 0 $color;
+}
+
 @mixin extra {
     @media only screen and (min-width: 1440px) and (max-width: 1920px) and (min-height: 850px) {
       @content;

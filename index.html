@@ -1,161 +1,1185 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bikano</title>
-    <link rel="stylesheet" href="./assets/scss/style.css">
-</head>
-<body>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.css"
+    />
+    <link rel="stylesheet" href="./assets/scss/style.css" />
+  </head>
+  <body>
     <main>
+      <!-------============HEADER====START==============---------->
 
-        <!-------============HEADER====START==============---------->
-    
-        <header class="header">
-            <div class="header__logo">
-                <a href="./index.html">
-                    <img src="./assets/images/logo.svg" alt="Bikano">
-                </a>
+      <header class="header">
+        <div class="header__logo">
+          <a href="./index.html">
+            <img src="./assets/images/logo.svg" alt="Bikano" />
+          </a>
+        </div>
+
+        <button
+          class="header__toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="header__nav">
+          <ul class="header__menu">
+            <li><a href="./index.html" class="active">HOME</a></li>
+            <li><a href="#">OUR RANGE</a></li>
+            <li><a href="#">OUR STORY</a></li>
+            <li><a href="#">REACH US</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-------============HEADER====END==============---------->
+
+      <!-------============BANNER====START==============---------->
+
+      <section class="home-banner">
+        <div class="home-banner__video">
+          <video
+            id="bannerVideo"
+            src="./assets/video/banner_video.mp4"
+            muted
+            loop
+            playsinline
+            preload="auto"
+          ></video>
+        </div>
+
+        <div class="home-banner__overlay" id="bannerOverlay"></div>
+
+        <button
+          class="play-btn"
+          id="playBtn"
+          aria-label="Play video"
+          aria-pressed="false"
+        >
+          <img src="./assets/images/play.svg" alt="Play" />
+        </button>
+
+        <div class="floating-actions">
+          <a
+            href="https://wa.me/"
+            class="floating-actions__item floating-actions__item--whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          >
+            <img src="./assets/images/whatsapp.svg" alt="WhatsApp" />
+          </a>
+          <a
+            href="#"
+            class="floating-actions__item floating-actions__item--cart"
+            aria-label="Cart"
+          >
+            <img src="./assets/images/cart.svg" alt="Cart" />
+          </a>
+        </div>
+      </section>
+
+      <!-------============BANNER====END==============---------->
+
+      <!-------============CERTIFIED BY====START==============---------->
+
+      <section class="certified-by">
+        <div class="certified-by__container">
+          <h2 class="certified-by__title">Certified by</h2>
+
+          <div class="certified-by__marquee">
+            <div class="swiper certified-by__swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide certified-by__slide">
+                  <img src="./assets/images/CertiLogo1.png" alt="FSSAI" />
+                </div>
+                <div class="swiper-slide certified-by__slide">
+                  <img
+                    src="./assets/images/CertiLogo2.png"
+                    alt="BRCGS Food Safety"
+                  />
+                </div>
+                <div class="swiper-slide certified-by__slide">
+                  <img src="./assets/images/CertiLogo3.png" alt="FDA" />
+                </div>
+                <div class="swiper-slide certified-by__slide">
+                  <img src="./assets/images/CertiLogo4.png" alt="FSSC 22000" />
+                </div>
+                <div class="swiper-slide certified-by__slide">
+                  <img src="./assets/images/CertiLogo5.png" alt="APEDA" />
+                </div>
+                <div class="swiper-slide certified-by__slide">
+                  <img src="./assets/images/CertiLogo7.png" alt="IEC" />
+                </div>
+                <div class="swiper-slide certified-by__slide">
+                  <img src="./assets/images/CertiLogo8.png" alt="Halal" />
+                </div>
+              </div>
             </div>
 
-            <button class="header__toggle" aria-label="Toggle menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <span
+              class="certified-by__fade certified-by__fade--left"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="certified-by__fade certified-by__fade--right"
+              aria-hidden="true"
+            ></span>
+          </div>
+        </div>
+      </section>
 
-            <nav class="header__nav">
-                <ul class="header__menu">
-                    <li><a href="./index.html" class="active">HOME</a></li>
-                    <li><a href="#">OUR RANGE</a></li>
-                    <li><a href="#">OUR STORY</a></li>
-                    <li><a href="#">REACH US</a></li>
-                </ul>
+      <!-------============CERTIFIED BY====END==============---------->
+
+      <!-------============ALL THINGS CRAVEABLE====START==============---------->
+
+      <section class="all-things-craveable">
+        <div class="all-things-craveable__floor" aria-hidden="true"></div>
+
+        <span
+          class="all-things-craveable__decor all-things-craveable__decor--speed"
+          aria-hidden="true"
+        ><span></span></span>
+        <span
+          class="all-things-craveable__decor all-things-craveable__decor--spark-left"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="all-things-craveable__decor all-things-craveable__decor--bolt-left"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="all-things-craveable__decor all-things-craveable__decor--bolt-right"
+          aria-hidden="true"
+        ></span>
+
+        <div class="all-things-craveable__container">
+          <header class="all-things-craveable__header">
+            <div class="all-things-craveable__title-wrap">
+              <span
+                class="all-things-craveable__title-icon"
+                aria-hidden="true"
+              ></span>
+              <h2 class="all-things-craveable__title">
+                <span class="all-things-craveable__title-line">All Things</span>
+                <span class="all-things-craveable__title-main">Craveable</span>
+              </h2>
+            </div>
+          </header>
+
+          <div class="all-things-craveable__toolbar">
+            <nav class="all-things-craveable__categories" aria-label="Product categories">
+              <a href="#" class="all-things-craveable__category active" data-category="namkeen">Namkeen</a>
+              <a href="#" class="all-things-craveable__category" data-category="bakery">Bakery</a>
+              <a href="#" class="all-things-craveable__category" data-category="sweets">Sweets</a>
+              <a href="#" class="all-things-craveable__category" data-category="snacks">Snacks</a>
+              <a href="#" class="all-things-craveable__category" data-category="drinks">Drinks</a>
             </nav>
-        </header>
-        
-        <!-------============HEADER====END==============---------->
 
-        <!-------============BANNER====START==============---------->
+            <a href="#" class="all-things-craveable__cta">
+              Pick Your Craving
+              <span aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M11.4584 5.625L16.0417 10L11.4584 14.375"
+                    stroke="white"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M15.8334 10H3.95837"
+                    stroke="white"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
 
-        <section class="home-banner">
-            <div class="home-banner__video">
-                <video id="bannerVideo" src="./assets/video/banner_video.mp4" muted loop playsinline preload="auto"></video>
+        <div class="all-things-craveable__slider">
+          <div class="swiper all-things-craveable__swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide all-things-craveable__slide">
+                <div class="all-things-craveable__product">
+                  <div class="all-things-craveable__burst" aria-hidden="true">
+                    <img src="./assets/images/Namkeen.png" alt="" />
+                  </div>
+                  <img
+                    class="all-things-craveable__packet"
+                    src="./assets/images/housebikano1.png"
+                    alt="Bikano Bhujia"
+                  />
+                </div>
+              </div>
+
+              <div class="swiper-slide all-things-craveable__slide">
+                <div class="all-things-craveable__product">
+                  <div class="all-things-craveable__burst" aria-hidden="true">
+                    <img src="./assets/images/Namkeen.png" alt="" />
+                  </div>
+                  <img
+                    class="all-things-craveable__packet"
+                    src="./assets/images/housebikano2.png"
+                    alt="Bikano Aloo Bhujia"
+                  />
+                </div>
+              </div>
+
+              <div class="swiper-slide all-things-craveable__slide">
+                <div class="all-things-craveable__product">
+                  <div class="all-things-craveable__burst" aria-hidden="true">
+                    <img src="./assets/images/Namkeen.png" alt="" />
+                  </div>
+                  <img
+                    class="all-things-craveable__packet"
+                    src="./assets/images/housebikano3.png"
+                    alt="Bikano Khatta Meetha"
+                  />
+                </div>
+              </div>
+
+              <div class="swiper-slide all-things-craveable__slide">
+                <div class="all-things-craveable__product">
+                  <div class="all-things-craveable__burst" aria-hidden="true">
+                    <img src="./assets/images/Namkeen.png" alt="" />
+                  </div>
+                  <img
+                    class="all-things-craveable__packet"
+                    src="./assets/images/housebikano1.png"
+                    alt="Bikano Bhujia"
+                  />
+                </div>
+              </div>
+
+              <div class="swiper-slide all-things-craveable__slide">
+                <div class="all-things-craveable__product">
+                  <div class="all-things-craveable__burst" aria-hidden="true">
+                    <img src="./assets/images/Namkeen.png" alt="" />
+                  </div>
+                  <img
+                    class="all-things-craveable__packet"
+                    src="./assets/images/housebikano2.png"
+                    alt="Bikano Aloo Bhujia"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="all-things-craveable__nav-btn all-things-craveable__nav-btn--prev"
+            type="button"
+            aria-label="Previous product"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="27"
+              viewBox="0 0 16 27"
+              fill="none"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.7312 14.7313L2.94583 26.5167L0 23.5708L10.3125 13.2583L0 2.94583L2.94583 0L14.7312 11.7854C15.1218 12.1761 15.3412 12.7059 15.3412 13.2583C15.3412 13.8108 15.1218 14.3406 14.7312 14.7313Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <button
+            class="all-things-craveable__nav-btn all-things-craveable__nav-btn--next"
+            type="button"
+            aria-label="Next product"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="27"
+              viewBox="0 0 16 27"
+              fill="none"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.7312 14.7313L2.94583 26.5167L0 23.5708L10.3125 13.2583L0 2.94583L2.94583 0L14.7312 11.7854C15.1218 12.1761 15.3412 12.7059 15.3412 13.2583C15.3412 13.8108 15.1218 14.3406 14.7312 14.7313Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-------============ALL THINGS CRAVEABLE====END==============---------->
+
+      <!-------============MOMENTS WITH====START==============---------->
+
+      <section class="moments-with">
+        <div class="moments-with__container">
+          <div class="moments-with__header">
+            <div class="moments-with__eyebrow-wrap">
+              <p class="moments-with__eyebrow">Moments With</p>
+            </div>
+            <h2 class="moments-with__title">Bikano</h2>
+          </div>
+
+          <div class="momentGallery">
+            <div class="col-40">
+              <div class="leftGalleryImg">
+                <img
+                  src="./assets/images/bikano1.png"
+                  alt="Father and son cooking together"
+                />
+              </div>
+            </div>
+            <div class="col-60">
+              <div class="galleryRightClub">
+                <div class="col-30 galleryclub">
+                  <div class="topImg">
+                    <img
+                      src="./assets/images/bikano2.png"
+                      alt="Elderly couple sharing sweets"
+                    />
+                  </div>
+                  <div class="bottomImg">
+                    <img
+                      src="./assets/images/bikano3.png"
+                      alt="Young couple by the pool"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-70">
+                  <div class="rightGalleryImg">
+                    <img
+                      src="./assets/images/bikano4.png"
+                      alt="Friends enjoying snacks together"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         
+        </div>
+
+        <div class="moments-with__order">
+            <p class="moments-with__order-text">ORDER YOUR FAVOURITES ON</p>
+            <div class="moments-with__order-logos">
+              <a href="#" class="moments-with__order-logo" aria-label="Blinkit">
+                <img
+                  src="../../assets/images/ecommerce1.svg"
+                  alt="Blinkit"
+                />
+              </a>
+              <a href="#" class="moments-with__order-logo" aria-label="Zomato">
+                <img
+                  src="../../assets/images/ecommerce2.svg"
+                  alt="Zomato"
+                />
+              </a>
+              <a
+                href="#"
+                class="moments-with__order-logo"
+                aria-label="Swiggy Instamart"
+              >
+                <img
+                  src="../../assets/images/ecommerce3.svg"
+                  alt="Swiggy Instamart"
+                />
+              </a>
+              <a
+                href="#"
+                class="moments-with__order-logo"
+                aria-label="Flipkart"
+              >
+                <img
+                  src="../../assets/images/ecommerce4.svg"
+                  alt="Flipkart"
+                />
+              </a>
+              <a href="#" class="moments-with__order-logo" aria-label="Amazon">
+                <img
+                  src="../../assets/images/ecommerce5.svg"
+                  alt="Amazon"
+                />
+              </a>
+            </div>
+          </div>
+      </section>
+
+
+
+      <!-------============MOMENTS WITH====END==============---------->
+
+
+
+      <!-------============HOUSE OF BIKANO====START==============---------->
+
+       <section class="houseBikano">
+       
+
+        <div class="houseContainer">
+          <div class="houseBikano__header">
+            <div class="houseBikano__heading">
+             
+              <h2 class="houseBikano__title">House Of Bikano</h2>
+             
             </div>
 
-            <div class="home-banner__overlay" id="bannerOverlay"></div>
+            <a href="#" class="houseBikano__btn">
+              BECOME A DISTRIBUTOR
+              <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M11.4584 5.625L16.0417 10L11.4584 14.375" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.8334 10H3.95837" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></span>
+            </a>
+          </div>
 
-            <button class="play-btn" id="playBtn" aria-label="Play video" aria-pressed="false">
-                <img src="./assets/images/play.svg" alt="Play">
+          <div class="houseBikano__cards">
+            <article class="houseBikano__card">
+              <div class="houseBikano__card-visual houseBikano__card-visual--tapri">
+                <img
+                  src="../../assets/images/houseBikano1.png"
+                  alt="Tapri Tales product"
+                />
+              </div>
+              <h3 class="houseBikano__card-name">TAPRI TALES</h3>
+            </article>
+
+            <article class="houseBikano__card">
+              <div class="houseBikano__card-visual houseBikano__card-visual--eat-easy">
+                <img
+                  src="../../assets/images/houseBikano2.png"
+                  alt="Eat Easy product"
+                />
+              </div>
+              <h3 class="houseBikano__card-name">EAT EASY</h3>
+            </article>
+
+            <article class="houseBikano__card">
+              <div class="houseBikano__card-visual houseBikano__card-visual--fatax">
+                <img
+                  src="../../assets/images/houseBikano3.png"
+                  alt="Fatax product"
+                />
+              </div>
+              <h3 class="houseBikano__card-name">FATAX</h3>
+            </article>
+          </div>
+        </div>
+      </section> 
+
+      <!-------============HOUSE OF BIKANO====END==============---------->
+
+      <!-------============CAUGHT IN THE ACT====START==============---------->
+
+      <section class="caught-in-act">
+        <div class="caught-in-act__container">
+          <div class="caught-in-act__header">
+            <h2 class="caught-in-act__title">
+              Caught In The Act
+              <span class="caught-in-act__title-sub"
+                >(Of Making Great Snacks)</span
+              >
+              <span class="caught-in-act__spark" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M6 18L11 13M18 6L14 10M12 4L12.6 8M20 12L16 12.6"
+                    stroke="#AE1830"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </h2>
+            <p class="caught-in-act__subtitle">
+              Good snacks don't happen by chance. It's a mix of quality, care
+              and zero shortcuts.
+            </p>
+          </div>
+
+          <div class="caught-in-act__slider">
+            <div class="swiper caught-in-act__swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide caught-in-act__slide">
+                  <a
+                    href="https://www.youtube.com/watch?v=kJ4GO8Mz31o"
+                    data-fancybox="caught-in-act"
+                    class="caught-in-act__media"
+                    aria-label="Play video"
+                  >
+                    <img
+                      src="https://img.youtube.com/vi/kJ4GO8Mz31o/maxresdefault.jpg"
+                      alt="Behind the scenes of Bikano snacks"
+                    />
+                    <span class="caught-in-act__play" aria-hidden="true">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="#fff"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </a>
+
+                  <ul class="caught-in-act__features">
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8L12 2z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Trusted Quality</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 8V6a5 5 0 0110 0v2m-12 0h14l-1 12H6L5 8z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Made With Intent</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 15c0-4 3.6-7 8-7s8 3 8 7H4z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M3 18h18"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <span>Finest Ingredients</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 3l7 3v5c0 4.4-3 8.4-7 9.5C8 19.4 5 15.4 5 11V6l7-3z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M9 12l2 2 4-4"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Freshness Sealed</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="swiper-slide caught-in-act__slide">
+                  <a
+                    href="https://www.youtube.com/watch?v=ScMzIvxBSi4"
+                    data-fancybox="caught-in-act"
+                    class="caught-in-act__media"
+                    aria-label="Play video"
+                  >
+                    <img
+                      src="https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg"
+                      alt="Bikano snack making process"
+                    />
+                    <span class="caught-in-act__play" aria-hidden="true">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="#fff"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </a>
+
+                  <ul class="caught-in-act__features">
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8L12 2z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Trusted Quality</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 8V6a5 5 0 0110 0v2m-12 0h14l-1 12H6L5 8z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Made With Intent</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 15c0-4 3.6-7 8-7s8 3 8 7H4z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M3 18h18"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <span>Finest Ingredients</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 3l7 3v5c0 4.4-3 8.4-7 9.5C8 19.4 5 15.4 5 11V6l7-3z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M9 12l2 2 4-4"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Freshness Sealed</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="swiper-slide caught-in-act__slide">
+                  <a
+                    href="https://www.youtube.com/watch?v=b7k0a5hYnSI"
+                    data-fancybox="caught-in-act"
+                    class="caught-in-act__media"
+                    aria-label="Play video"
+                  >
+                    <img
+                      src="https://img.youtube.com/vi/b7k0a5hYnSI/maxresdefault.jpg"
+                      alt="Bikano quality and freshness"
+                    />
+                    <span class="caught-in-act__play" aria-hidden="true">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="#fff"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </a>
+
+                  <ul class="caught-in-act__features">
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8L12 2z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Trusted Quality</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 8V6a5 5 0 0110 0v2m-12 0h14l-1 12H6L5 8z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Made With Intent</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 15c0-4 3.6-7 8-7s8 3 8 7H4z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M3 18h18"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                      <span>Finest Ingredients</span>
+                    </li>
+                    <li class="caught-in-act__feature">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 3l7 3v5c0 4.4-3 8.4-7 9.5C8 19.4 5 15.4 5 11V6l7-3z"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M9 12l2 2 4-4"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>Freshness Sealed</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="caught-in-act__nav caught-in-act__nav--prev"
+              type="button"
+              aria-label="Previous slide"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="27"
+                viewBox="0 0 16 27"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M14.7312 14.7313L2.94583 26.5167L0 23.5708L10.3125 13.2583L0 2.94583L2.94583 0L14.7312 11.7854C15.1218 12.1761 15.3412 12.7059 15.3412 13.2583C15.3412 13.8108 15.1218 14.3406 14.7312 14.7313Z"
+                  fill="#A02320"
+                />
+              </svg>
+            </button>
+            <button
+              class="caught-in-act__nav caught-in-act__nav--next"
+              type="button"
+              aria-label="Next slide"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="27"
+                viewBox="0 0 16 27"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M14.7312 14.7313L2.94583 26.5167L0 23.5708L10.3125 13.2583L0 2.94583L2.94583 0L14.7312 11.7854C15.1218 12.1761 15.3412 12.7059 15.3412 13.2583C15.3412 13.8108 15.1218 14.3406 14.7312 14.7313Z"
+                  fill="#A02320"
+                />
+              </svg>
             </button>
 
-            <div class="floating-actions">
-                <a href="https://wa.me/" class="floating-actions__item floating-actions__item--whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                    <img src="./assets/images/whatsapp.svg" alt="WhatsApp">
-                </a>
-                <a href="#" class="floating-actions__item floating-actions__item--cart" aria-label="Cart">
-                    <img src="./assets/images/cart.svg" alt="Cart">
-                </a>
+            <div class="caught-in-act__pagination"></div>
+          </div>
+        </div>
+      </section> 
+
+      <!-------============CAUGHT IN THE ACT====END==============---------->
+
+      <!-------============BIKANO BUZZ====START==============---------->
+
+       <section class="bikano-buzz">
+        <div class="bikano-buzz__container">
+          <div class="bikano-buzz__header">
+            <h2 class="bikano-buzz__title">The Bikano Buzz</h2>
+            <span class="bikano-buzz__badge" aria-hidden="true">
+              <img src="./assets/images/snackInAction.png" alt="Snack In Action" />
+            </span>
+          </div>
+        </div>
+
+        <div class="bikano-buzz__marquee">
+          <div class="swiper bikano-buzz__swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide bikano-buzz__slide">
+                <article class="bikano-buzz__card">
+                  <img src="./assets/images/bikano1.png" alt="Bikano reel" />
+                  <span class="bikano-buzz__views">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"
+                        stroke="#fff"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="#fff" />
+                    </svg>
+                    6,097
+                  </span>
+                </article>
+              </div>
+
+              <div class="swiper-slide bikano-buzz__slide">
+                <article class="bikano-buzz__card">
+                  <img src="./assets/images/bikano2.png" alt="Bikano reel" />
+                  <span class="bikano-buzz__views">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"
+                        stroke="#fff"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="#fff" />
+                    </svg>
+                    13.4K
+                  </span>
+                </article>
+              </div>
+
+              <div class="swiper-slide bikano-buzz__slide">
+                <article class="bikano-buzz__card">
+                  <img src="./assets/images/bikano3.png" alt="Bikano reel" />
+                  <span class="bikano-buzz__views">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"
+                        stroke="#fff"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="#fff" />
+                    </svg>
+                    11.4K
+                  </span>
+                </article>
+              </div>
+
+              <div class="swiper-slide bikano-buzz__slide">
+                <article class="bikano-buzz__card">
+                  <img src="./assets/images/bikano4.png" alt="Bikano reel" />
+                  <span class="bikano-buzz__views">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"
+                        stroke="#fff"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="#fff" />
+                    </svg>
+                    6,305
+                  </span>
+                </article>
+              </div>
+
+              <div class="swiper-slide bikano-buzz__slide">
+                <article class="bikano-buzz__card">
+                  <img src="./assets/images/housebikano1.png" alt="Bikano reel" />
+                  <span class="bikano-buzz__views">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"
+                        stroke="#fff"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="#fff" />
+                    </svg>
+                    130K
+                  </span>
+                </article>
+              </div>
+
+              <div class="swiper-slide bikano-buzz__slide">
+                <article class="bikano-buzz__card">
+                  <img src="./assets/images/housebikano2.png" alt="Bikano reel" />
+                  <span class="bikano-buzz__views">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"
+                        stroke="#fff"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="#fff" />
+                    </svg>
+                    24.8K
+                  </span>
+                </article>
+              </div>
+
+              <div class="swiper-slide bikano-buzz__slide">
+                <article class="bikano-buzz__card">
+                  <img src="./assets/images/housebikano3.png" alt="Bikano reel" />
+                  <span class="bikano-buzz__views">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"
+                        stroke="#fff"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="#fff" />
+                    </svg>
+                    9,842
+                  </span>
+                </article>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section> 
 
-        <!-------============BANNER====END==============---------->
+      <!-------============BIKANO BUZZ====END==============---------->
 
+      <!-------============FOOTER====START==============---------->
 
-        <!-------============FOOTER====START==============---------->
+      <footer class="footer">
+        <div class="footer__inner">
+          <div class="footer__brand">
+            <a href="./index.html" class="footer__logo">
+              <img src="./assets/images/logo.svg" alt="Bikano" />
+            </a>
 
-        <footer class="footer">
-            <div class="footer__inner">
-                <div class="footer__brand">
-                    <a href="./index.html" class="footer__logo">
-                        <img src="./assets/images/logo.svg" alt="Bikano">
-                    </a>
-
-                    <div class="footer__tagline">
-                        <img src="./assets/images/footer_left_box_img.png" alt="Stay Crunchy">
-                    </div>
-
-                    <ul class="footer__contact">
-                        <li>
-                            <span class="footer__contact-icon" aria-hidden="true">
-                                <img src="./assets/images/mail.png" alt="">
-                            </span>
-                            <a href="mailto:customercare@bikano.com">Email - customercare@bikano.com</a>
-                        </li>
-                        <li>
-                            <span class="footer__contact-icon" aria-hidden="true">
-                                <img src="./assets/images/call.png" alt="">
-                            </span>
-                            <a href="tel:9871590661">Call - 98715-90661</a>
-                        </li>
-                        <li>
-                            <span class="footer__contact-icon" aria-hidden="true">
-                                <img src="./assets/images/whatsapp.png" alt="">
-                            </span>
-                            <a href="https://wa.me/911234567890" target="_blank" rel="noopener noreferrer">WhatsApp - 12345 67890</a>
-                        </li>
-                    </ul>
-
-                    <div class="footer__social">
-                        <a href="#" aria-label="YouTube">
-                            <img src="./assets/images/youtube.svg" alt="YouTube">
-                        </a>
-                        <a href="#" aria-label="Instagram">
-                            <img src="./assets/images/insta.svg" alt="Instagram">
-                        </a>
-                        <a href="#" aria-label="Facebook">
-                            <img src="./assets/images/facebook.svg" alt="Facebook">
-                        </a>
-                        <a href="#" aria-label="X">
-                            <img src="./assets/images/x.svg" alt="X">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer__location">
-                    <div class="footer__map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.1999830053123!2d77.14476328311035!3d28.683663812818185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d017f3a0a9a4d%3A0x69acacba9674ddbb!2sBikanervala%20Corporate%20office!5e0!3m2!1sen!2sin!4v1703067830132!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bikanervala Corporate office"></iframe>
-                    </div>
-
-                    <div class="footer__address">
-                        <h3>Head Office</h3>
-                        <p>Bikanervala Foods Pvt. Ltd.</p>
-                        <p>A-28, Lawrence Road, Industrial Area,</p>
-                        <p>New Delhi, 110035</p>
-                    </div>
-                </div>
-
-                <div class="footer__links">
-                    <div class="footer__links-group">
-                        <h3>Website</h3>
-                        <ul>
-                            <li><a href="./index.html">Home</a></li>
-                            <li><a href="#">Our Products</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">Reach Us</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer__links-group">
-                        <h3>Legal</h3>
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="footer__tagline">
+              <img
+                src="./assets/images/footer_left_box_img.png"
+                alt="Stay Crunchy"
+              />
             </div>
 
-            <div class="footer__bottom">
-                <p>Bikano © 2026 | All rights reserved | Powered by Bikanervala Foods Pvt. Ltd.</p>
-            </div>
-        </footer>
-        
-        <!-------============FOOTER====END==============---------->
+            <ul class="footer__contact">
+              <li>
+                <span class="footer__contact-icon" aria-hidden="true">
+                  <img src="./assets/images/mail.png" alt="" />
+                </span>
+                <a href="mailto:customercare@bikano.com"
+                  >Email - customercare@bikano.com</a
+                >
+              </li>
+              <li>
+                <span class="footer__contact-icon" aria-hidden="true">
+                  <img src="./assets/images/call.png" alt="" />
+                </span>
+                <a href="tel:9871590661">Call - 98715-90661</a>
+              </li>
+              <li>
+                <span class="footer__contact-icon" aria-hidden="true">
+                  <img src="./assets/images/whatsapp.png" alt="" />
+                </span>
+                <a
+                  href="https://wa.me/911234567890"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >WhatsApp - 12345 67890</a
+                >
+              </li>
+            </ul>
 
+            <div class="footer__social">
+              <a href="#" aria-label="YouTube">
+                <img src="./assets/images/youtube.svg" alt="YouTube" />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="./assets/images/insta.svg" alt="Instagram" />
+              </a>
+              <a href="#" aria-label="Facebook">
+                <img src="./assets/images/facebook.svg" alt="Facebook" />
+              </a>
+              <a href="#" aria-label="X">
+                <img src="./assets/images/x.svg" alt="X" />
+              </a>
+            </div>
+          </div>
+
+          <div class="footer__location">
+            <div class="footer__map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.1999830053123!2d77.14476328311035!3d28.683663812818185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d017f3a0a9a4d%3A0x69acacba9674ddbb!2sBikanervala%20Corporate%20office!5e0!3m2!1sen!2sin!4v1703067830132!5m2!1sen!2sin"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Bikanervala Corporate office"
+              ></iframe>
+            </div>
+
+            <div class="footer__address">
+              <h3>Head Office</h3>
+              <p>Bikanervala Foods Pvt. Ltd.</p>
+              <p>A-28, Lawrence Road, Industrial Area,</p>
+              <p>New Delhi, 110035</p>
+            </div>
+          </div>
+
+          <div class="footer__links">
+            <div class="footer__links-group">
+              <h3>Website</h3>
+              <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="#">Our Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Career</a></li>
+                <li><a href="#">Reach Us</a></li>
+              </ul>
+            </div>
+
+            <div class="footer__links-group">
+              <h3>Legal</h3>
+              <ul>
+                <li><a href="#">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>
+            Bikano © 2026 | All rights reserved | Powered by Bikanervala Foods
+            Pvt. Ltd.
+          </p>
+        </div>
+      </footer>
+
+      <!-------============FOOTER====END==============---------->
     </main>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.umd.js"></script>
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
