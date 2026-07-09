@@ -370,7 +370,8 @@ img {
   width: 20px;
   height: 20px;
   display: block;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .footer__social {
   display: flex;
@@ -389,7 +390,8 @@ img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .footer__social a:hover {
   transform: translateY(-2px);
@@ -576,7 +578,8 @@ img {
 .home-banner__video video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 .home-banner__overlay {
@@ -690,7 +693,8 @@ img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .floating-actions__item:hover {
   transform: scale(1.08);
@@ -782,6 +786,7 @@ img {
 .certified-by__swiper .swiper-wrapper {
   display: flex;
   align-items: center;
+  width: -moz-max-content;
   width: max-content;
   gap: 64px;
   will-change: transform;
@@ -814,7 +819,8 @@ img {
   height: 56px;
   width: auto;
   max-width: none;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   will-change: filter;
   transition: filter 0.12s linear;
 }
@@ -1141,11 +1147,15 @@ img {
   justify-content: center;
   flex-direction: row;
   gap: 0;
-  flex-wrap: wrap;
   padding: 10px 18px;
   border-radius: 999px;
   background: var(--white);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+@media only screen and (max-width: 767px) {
+  .all-things-craveable__categories {
+    max-width: 350px;
+  }
 }
 .all-things-craveable__category {
   font-weight: 500;
@@ -1227,12 +1237,12 @@ img {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 90px 0 50px;
+  padding: 90px 0 80px;
   overflow: hidden;
 }
 @media only screen and (max-width: 563px) {
   .all-things-craveable__swiper {
-    padding: 60px 0 30px;
+    padding: 60px 0 55px;
   }
 }
 .all-things-craveable__swiper .swiper-wrapper {
@@ -1263,11 +1273,11 @@ img {
 .all-things-craveable__product {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   width: 100%;
   min-height: 340px;
-  padding: 0 8px 12px;
+  padding: 0 8px;
   transform-style: preserve-3d;
   perspective: 900px;
 }
@@ -1279,7 +1289,6 @@ img {
 @media only screen and (max-width: 563px) {
   .all-things-craveable__product {
     min-height: 220px;
-    padding-bottom: 8px;
   }
 }
 .all-things-craveable__burst {
@@ -1287,8 +1296,8 @@ img {
   top: 50%;
   left: 50%;
   z-index: 0;
-  width: 132%;
-  max-width: 500px;
+  width: 138%;
+  max-width: 460px;
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0.6);
@@ -1299,37 +1308,44 @@ img {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   filter: drop-shadow(0 22px 30px rgba(0, 0, 0, 0.16));
 }
 .swiper-slide-active .all-things-craveable__burst {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(0.87);
+}
+@media only screen and (max-width: 767px) {
+  .swiper-slide-active .all-things-craveable__burst {
+    transform: translate(-50%, -50%) scale(0.77);
+  }
 }
 .all-things-craveable__packet {
   position: relative;
   z-index: 2;
   display: block;
-  width: 62%;
-  max-width: 240px;
+  width: 70%;
+  max-width: 230px;
   height: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.2));
   transform: translateZ(24px);
-  transition: filter 0.45s ease, transform 0.45s ease, width 0.45s ease;
+  transition: filter 0.45s ease, transform 0.45s ease, width 0.45s ease, max-width 0.45s ease;
 }
 .swiper-slide-active .all-things-craveable__packet {
-  width: 78%;
-  max-width: 340px;
+  width: 86%;
+  max-width: 300px;
   filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.26));
-  transform: translateZ(48px) translateY(-10px);
+  transform: translateZ(48px);
 }
 @media only screen and (max-width: 563px) {
   .all-things-craveable__packet {
-    max-width: 190px;
+    max-width: 180px;
   }
   .swiper-slide-active .all-things-craveable__packet {
-    max-width: 230px;
+    max-width: 220px;
   }
 }
 .all-things-craveable__cup {
@@ -1600,8 +1616,10 @@ img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 @media only screen and (max-width: 767px) {
   .moments-with__frame {
@@ -1672,7 +1690,8 @@ img {
 .moments-with__order-logo img {
   width: 40px;
   height: 40px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 @media only screen and (max-width: 563px) {
   .moments-with__order-logo {
@@ -1932,7 +1951,8 @@ img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   transform-origin: center center;
   transform-style: preserve-3d;
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -2115,8 +2135,10 @@ img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 .caught-in-act__media::after {
   content: "";
@@ -2448,6 +2470,7 @@ img {
 .bikano-buzz__swiper .swiper-wrapper {
   display: flex;
   align-items: center;
+  width: -moz-max-content;
   width: max-content;
   gap: 24px;
   will-change: transform;
@@ -2484,8 +2507,10 @@ img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
   border-radius: 8px;
 }
 @media only screen and (max-width: 991px) {

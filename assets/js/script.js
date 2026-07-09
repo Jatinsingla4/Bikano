@@ -180,9 +180,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Replace the img paths below with the real product PNGs for each category.
     const craveableProducts = {
       namkeen: [
-        { img: "./assets/images/housebikano1.png", alt: "Bikano Bhujia" },
-        { img: "./assets/images/housebikano2.png", alt: "Bikano Aloo Bhujia" },
-        { img: "./assets/images/housebikano3.png", alt: "Bikano Khatta Meetha" },
+        { img: "./assets/images/aloo.png", alt: "Bikano Aloo Bhujia" },
+        { img: "./assets/images/aloo.png", alt: "Bikano Aloo Bhujia" },
+        { img: "./assets/images/aloo.png", alt: "Bikano Aloo Bhujia" },
       ],
       bakery: [
         { img: "./assets/images/housebikano2.png", alt: "Bikano Ajwain Cookie" },
