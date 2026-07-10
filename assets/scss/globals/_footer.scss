@@ -20,7 +20,7 @@
     overflow: hidden;
     background-image: url("../images/bikanofooterbg.png");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     
     &::before {
       content: "";

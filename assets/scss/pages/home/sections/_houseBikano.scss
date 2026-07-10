@@ -3,11 +3,11 @@
   width: 100%;
   overflow: hidden;
   padding: 64px 0 64px;
-  background-image: url("../images/houseBg.png");
+  background-image: url("../images/houseBg.jpg");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100% 100%;
-
+  background-size: cover;
+  
   @include tab {
     padding: 56px 0 64px;
   }
@@ -58,47 +58,35 @@
     flex-wrap: wrap;
   }
 
-  &__spark {
-    position: relative;
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+  &__title-icon {
+    position: absolute;
+    position-anchor: --hob-title;
+    right: anchor(left);
+    bottom: anchor(top);
+    z-index: 1;
+    width: 53px;
+    margin: 0 -8px -22px 0;
     pointer-events: none;
 
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      background: var(--red2);
-      border-radius: 2px;
-    }
-
-    &::before {
-      top: 50%;
-      left: 0;
+    img {
+      display: block;
       width: 100%;
-      height: 3px;
-      transform: translateY(-50%) rotate(-32deg);
+      height: auto;
     }
 
-    &::after {
-      top: 0;
-      left: 50%;
-      width: 3px;
-      height: 100%;
-      transform: translateX(-50%) rotate(14deg);
+    @include mobile {
+      width: 36px;
     }
   }
 
   &__title {
-    @include heading-style(52px, extrabold, var(--red2));
+    anchor-name: --hob-title;
+    @include heading-style(80px, semibold, var(--red2));
     letter-spacing: -0.02em;
     line-height: 1;
-    padding-left: 63px;
 
     @include tab {
       @include font-size(42px);
-      padding-left: 0
     }
 
     @include mobile {
@@ -106,17 +94,25 @@
     }
   }
 
-  &__arrow {
-    flex-shrink: 0;
+  &__spring {
+    position: absolute;
+    position-anchor: --hob-title;
+    left: anchor(right);
+    top: anchor(bottom);
+    z-index: 1;
     width: 72px;
-    height: 56px;
-    margin-left: 4px;
-    margin-top: 8px;
+    margin: -18px 0 0 -10px;
     pointer-events: none;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     @include mobile {
       width: 56px;
-      height: 44px;
+      margin-top: -12px;
     }
   }
 
@@ -158,13 +154,12 @@
 
   &__cards {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
     padding-top: 60px;
 
     @include tab {
       grid-template-columns: 1fr;
-      gap: 18px;
       padding-top: 0;
     }
   }

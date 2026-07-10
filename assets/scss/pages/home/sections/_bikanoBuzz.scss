@@ -1,8 +1,9 @@
 .bikano-buzz {
   position: relative;
   width: 100%;
-  overflow: hidden;
-  background-image: url("../images/BikanoBuzz.png");
+  overflow-x: hidden;
+  overflow-y: visible;
+  background-image: url("../images/BikanoBuzz.jpg");
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -45,7 +46,33 @@
     }
   }
 
+  &__title-wrap {
+    position: relative;
+  }
+
+  &__title-icon {
+    position: absolute;
+    position-anchor: --buzz-title;
+    right: anchor(left);
+    bottom: anchor(bottom);
+    z-index: 1;
+    width: 53px;
+    margin: 0 -8px -5px 0;
+    pointer-events: none;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @include mobile {
+      width: 36px;
+    }
+  }
+
   &__title {
+    anchor-name: --buzz-title;
     @include heading-style(64px, bold, var(--yellow));
     line-height: 1;
     text-align: center;
@@ -60,7 +87,7 @@
     }
 
     @include mobile {
-      @include font-size(26px);
+      @include font-size(30px);
       white-space: normal;
     }
   }
@@ -87,10 +114,86 @@
     }
   }
 
+  &__stage {
+    position: relative;
+    overflow: visible;
+  }
+
   &__marquee {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    padding: 36px 0 40px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &__decor {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &--lines {
+      top: -24px;
+      left: 8%;
+      width: 48px;
+      
+      @include tab {
+        top: -5px;
+        width: 30px;
+      }
+    }
+
+    &--electricity-top {
+      top: -58px;
+      right: 18%;
+      width: 68px;
+      
+      @include tab {
+        right: 10%;
+        width: 50px;
+        top: -20px;
+      }
+    }
+
+    &--electricity-bottom {
+      bottom: -24px;
+      left: 22%;
+      width: 49px;
+      
+      @include tab {
+        left: 14%;
+        width: 40px;
+      }
+    }
+
+    &--spring {
+      bottom: -10px;
+      right: 24%;
+      width: 72px;
+
+      @include tab {
+        right: 12%;
+        width: 56px;
+      }
+    }
+
+    // @include mobile {
+    //   display: none;
+    // }
   }
 
   &__swiper {

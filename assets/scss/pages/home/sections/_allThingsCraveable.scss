@@ -9,7 +9,10 @@
   width: 100%;
   overflow: hidden;
   padding: 56px 0 0;
-  background: var(--atc-yellow);
+  background-image: url("../images/second_sectoin_bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 
   @include tab {
     padding-top: 44px;
@@ -17,6 +20,8 @@
 
   @include mobile {
     padding-top: 36px;
+    --atc-slide-scale: 0.72;
+    --atc-slide-active-scale: 1.08;
   }
 
   &__container {
@@ -35,149 +40,66 @@
     }
   }
 
-  // Decorative sparks & lightning bolts
+  // Decorative elements
   &__decor {
     position: absolute;
     z-index: 1;
     pointer-events: none;
 
-    &--speed {
-      top: 118px;
-      left: 42px;
-      width: 34px;
-      height: 22px;
-
-      &::before,
-      &::after,
-      span {
-        content: "";
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        border-radius: 2px;
-        background: var(--atc-red);
-        transform: rotate(-28deg);
-      }
-
-      &::before {
-        top: 0;
-      }
-
-      span {
-        top: 9px;
-        width: 78%;
-      }
-
-      &::after {
-        top: 18px;
-        width: 56%;
-      }
-
-      @include mobile {
-        display: none;
-      }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
-    &--spark-left {
-      top: 48%;
-      left: 28px;
-      width: 18px;
-      height: 18px;
-
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        background: var(--atc-red);
-        border-radius: 2px;
+    &--tab-arrows {
+      position-anchor: --atc-categories;
+      right: anchor(left);
+      bottom: anchor(top);
+      width: 49px;
+      margin: 0 14px -8px 0;
+      
+      @include tab {
+        width: 40px;
       }
-
-      &::before {
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        transform: translateY(-50%) rotate(-30deg);
-      }
-
-      &::after {
-        top: 0;
-        left: 50%;
-        width: 3px;
-        height: 100%;
-        transform: translateX(-50%) rotate(12deg);
-      }
-
+      
       @include mobile {
-        display: none;
+        width: 30px;
+        margin: 0 0px -12px 0;
+        // display: none;
       }
     }
 
     &--bolt-left {
-      bottom: 148px;
-      left: 56px;
-      width: 18px;
-      height: 28px;
-      background: var(--atc-red);
-      clip-path: polygon(50% 0, 68% 38%, 54% 38%, 72% 100%, 32% 48%, 46% 48%);
+      bottom: 80px;
+      left: 20%;
+      width: 35px;
+      transform: translateX(-20%);
+
+      @include tab {
+        left: 6%;
+        bottom: 20px;
+      }
 
       @include mobile {
-        display: none;
+        // display: none;
       }
     }
 
     &--bolt-right {
-      top: 52%;
-      right: 38%;
-      width: 16px;
-      height: 24px;
-      background: var(--atc-red);
-      clip-path: polygon(50% 0, 68% 38%, 54% 38%, 72% 100%, 32% 48%, 46% 48%);
+      top: 304px;
+      right: 20%;
+      width: 55px;
+      transform: translateY(-20%);
 
       @include tab {
-        right: 12%;
+        right: 10%;
+        width: 46px;
       }
 
       @include mobile {
-        display: none;
+        // display: none;
       }
-    }
-  }
-
-  // Perspective grid floor
-  &__floor {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    z-index: 1;
-    width: 140%;
-    height: 46%;
-    pointer-events: none;
-    overflow: hidden;
-    transform: translateX(-50%);
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background:
-        linear-gradient(180deg, var(--atc-yellow) 0%, rgba(254, 195, 63, 0.35) 14%, transparent 28%),
-        repeating-linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.52) 0 1px,
-          transparent 1px 78px
-        ),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.52) 0 1px,
-          transparent 1px 52px
-        );
-      transform: perspective(420px) rotateX(74deg);
-      transform-origin: center top;
     }
   }
 
@@ -193,50 +115,41 @@
   }
 
   &__title-wrap {
-    @include flex-center(row, 10px);
+    position: relative;
+    @include flex-center(row, 0px);
+    align-items: flex-start;
     justify-content: center;
     flex-wrap: wrap;
+
+    @include tab {
+      flex-direction: row;
+    }
   }
 
   &__title-icon {
-    position: relative;
-    flex-shrink: 0;
-    width: 34px;
-    height: 28px;
-    margin-top: 8px;
+    position: absolute;
+    position-anchor: --atc-title-line;
+    right: anchor(left);
+    bottom: anchor(top);
+    z-index: 1;
+    width: 53px;
+    margin: 0px -8px -22px 0;
+    pointer-events: none;
 
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
+    img {
+      display: block;
       width: 100%;
-      height: 8px;
-      border-radius: 2px;
-      background: var(--atc-red);
-      transform-origin: left center;
-    }
-
-    &::before {
-      top: 2px;
-      transform: rotate(-18deg);
-    }
-
-    &::after {
-      bottom: 2px;
-      width: 72%;
-      transform: rotate(-32deg);
+      height: auto;
     }
 
     @include mobile {
-      width: 26px;
-      height: 22px;
+      width: 36px;
     }
   }
 
   &__title {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px 14px;
@@ -244,6 +157,7 @@
   }
 
   &__title-line {
+    anchor-name: --atc-title-line;
     @include font-family(semibold);
     @include font-size(42px, 1);
     color: var(--atc-red);
@@ -259,8 +173,8 @@
   }
 
   &__title-main {
-    @include font-family(extrabold);
-    @include font-size(108px, 0.92);
+    @include font-family(semibold);
+    @include font-size(80px);
     color: var(--atc-red);
     letter-spacing: -0.03em;
 
@@ -287,7 +201,12 @@
     }
   }
 
+  &__categories-wrap {
+    position: relative;
+  }
+
   &__categories {
+    anchor-name: --atc-categories;
     @include flex-center(row, 0);
     padding: 10px 18px;
     border-radius: 999px;
@@ -382,24 +301,32 @@
     overflow: hidden;
 
     @include mobile {
-      padding: 60px 0 55px;
+      padding: 48px 0 40px;
     }
 
     .swiper-wrapper {
-      align-items: flex-end;
+      align-items: center;
     }
 
     .swiper-slide {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      height: auto;
+      height: 380px;
       transform: scale(var(--atc-slide-scale));
       opacity: 0.82;
       transition:
         transform 0.5s cubic-bezier(0.34, 1.1, 0.64, 1),
         opacity 0.45s ease;
       will-change: transform;
+
+      @include tab {
+        height: 320px;
+      }
+
+      @include mobile {
+        height: 240px;
+      }
     }
 
     .swiper-slide-prev,
@@ -424,18 +351,10 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 340px;
+    height: 100%;
     padding: 0 8px;
     transform-style: preserve-3d;
     perspective: 900px;
-
-    @include tab {
-      min-height: 280px;
-    }
-
-    @include mobile {
-      min-height: 220px;
-    }
   }
 
   // Namkeen burst — visible only on center (active) slide
@@ -466,8 +385,16 @@
       opacity: 1;
       transform: translate(-50%, -50%) scale(0.87);
 
-      @include lessTab{
+      @include lessTab {
         transform: translate(-50%, -50%) scale(0.77);
+      }
+    }
+
+    @include mobile {
+      // max-width: 280px;
+
+      .swiper-slide-active & {
+        transform: translate(-50%, -50%) scale(0.62);
       }
     }
   }
@@ -476,36 +403,71 @@
     position: relative;
     z-index: 2;
     display: block;
-    width: 70%;
-    max-width: 230px;
+    width: auto;
+    max-width: 260px;
+    max-height: 300px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.2));
     transform: translateZ(24px);
     transition:
       filter 0.45s ease,
-      transform 0.45s ease,
-      width 0.45s ease,
-      max-width 0.45s ease;
+      transform 0.45s ease;
 
     .swiper-slide-active & {
-      width: 86%;
-      max-width: 300px;
       filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.26));
       transform: translateZ(48px);
     }
 
-    @include mobile {
-      max-width: 180px;
+    @include tab {
+      max-width: 220px;
+      max-height: 260px;
+    }
 
-      .swiper-slide-active & {
-        max-width: 220px;
-      }
+    @include mobile {
+      max-width: 140px;
+      max-height: 180px;
     }
   }
 
-  &__cup {
-    display: none;
+  // Tea / coffee / gulab — only on active slide, over packet bottom-right
+  &__accent {
+    position: absolute;
+    right: 12%;
+    bottom: 4%;
+    z-index: 3;
+    width: 32%;
+    max-width: 96px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(6px, 10px) scale(0.82);
+    transition:
+      opacity 0.45s ease,
+      transform 0.5s cubic-bezier(0.34, 1.15, 0.64, 1);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.22));
+    }
+
+    .swiper-slide-active & {
+      opacity: 1;
+      transform: none;
+    }
+
+    @include tab {
+      max-width: 78px;
+      right: 10%;
+    }
+
+    @include mobile {
+      max-width: 56px;
+      right: 8%;
+      bottom: 2%;
+    }
   }
 
   // Swiper prev / next — semi-circle edge buttons

@@ -51,6 +51,7 @@
   }
 
   &__title-sub {
+    anchor-name: --caught-title-sub;
     font-weight: 600;
     @include font-size(40px);
     color: var(--red2);
@@ -68,17 +69,23 @@
 
   &__spark {
     position: absolute;
-    top: -14px;
-    right: -34px;
-    width: 34px;
-    height: 34px;
+    position-anchor: --caught-title-sub;
+    left: anchor(right);
+    bottom: anchor(top);
+    z-index: 1;
+    width: 53px;
+    margin: 0 0 -18px -6px;
     pointer-events: none;
 
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     @include mobile {
-      right: -6px;
-      top: -8px;
-      width: 24px;
-      height: 24px;
+      width: 36px;
+      margin: 0 0 20px 4px;
     }
   }
 
