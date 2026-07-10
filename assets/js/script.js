@@ -175,50 +175,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (craveableSwiperEl && typeof Swiper !== "undefined") {
     const craveableWrapper = craveableSwiperEl.querySelector(".swiper-wrapper");
+    const craveableCatalog = document.querySelector(".all-things-craveable__catalog");
 
-    // Products shown for each category tab.
-    // Replace the img paths below with the real product PNGs for each category.
-    const craveableProducts = {
-      namkeen: [
-        { img: "./assets/images/aloo.png", alt: "Bikano Aloo Bhujia" },
-        { img: "./assets/images/aloo.png", alt: "Bikano Aloo Bhujia" },
-        { img: "./assets/images/aloo.png", alt: "Bikano Aloo Bhujia" },
-      ],
-      bakery: [
-        { img: "./assets/images/housebikano2.png", alt: "Bikano Ajwain Cookie" },
-        { img: "./assets/images/housebikano3.png", alt: "Bikano Real Kaju" },
-        { img: "./assets/images/housebikano1.png", alt: "Bikano Cream Cracker" },
-      ],
-      sweets: [
-        { img: "./assets/images/housebikano3.png", alt: "Bikano Soan Papdi" },
-        { img: "./assets/images/housebikano1.png", alt: "Bikano Gulab Jamun" },
-        { img: "./assets/images/housebikano2.png", alt: "Bikano Rasgulla" },
-      ],
-      snacks: [
-        { img: "./assets/images/housebikano1.png", alt: "Bikano Snack 1" },
-        { img: "./assets/images/housebikano3.png", alt: "Bikano Snack 2" },
-        { img: "./assets/images/housebikano2.png", alt: "Bikano Snack 3" },
-      ],
-      drinks: [
-        { img: "./assets/images/housebikano2.png", alt: "Bikano Drink 1" },
-        { img: "./assets/images/housebikano1.png", alt: "Bikano Drink 2" },
-        { img: "./assets/images/housebikano3.png", alt: "Bikano Drink 3" },
-      ],
+    const getCraveableCategoryData = (category) => {
+      const group =
+        craveableCatalog &&
+        (craveableCatalog.querySelector(
+          `.all-things-craveable__catalog-group[data-category="${category}"]`
+        ) ||
+          craveableCatalog.querySelector(
+            '.all-things-craveable__catalog-group[data-category="namkeen"]'
+          ));
+
+      if (!group) {
+        return { products: [], accent: "", burst: "./assets/images/Namkeen.png" };
+      }
+
+      const products = Array.from(group.querySelectorAll("img")).map((img) => ({
+        img: img.getAttribute("src") || "",
+        alt: img.getAttribute("alt") || "",
+      }));
+
+      return {
+        products,
+        accent: group.dataset.accent || "",
+        burst: group.dataset.burst || "./assets/images/Namkeen.png",
+      };
     };
 
-    const craveableAccents = {
-      namkeen: "./assets/images/tea.png",
-      bakery: "./assets/images/coffee.png",
-      sweets: "./assets/images/gulabjamun.png",
-    };
-
-    const craveableSlideMarkup = (product, category) => {
-      const accent = craveableAccents[category];
-      return `
+    const craveableSlideMarkup = (product, accent, burst) => `
       <div class="swiper-slide all-things-craveable__slide">
         <div class="all-things-craveable__product">
           <div class="all-things-craveable__burst" aria-hidden="true">
-            <img src="./assets/images/Namkeen.png" alt="" />
+            <img src="${burst}" alt="" />
           </div>
           <img
             class="all-things-craveable__packet"
@@ -234,16 +223,17 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         </div>
       </div>`;
-    };
 
     let craveableSwiper = null;
 
     const buildCraveableCategory = (category) => {
-      const list = craveableProducts[category] || craveableProducts.namkeen;
+      const { products, accent, burst } = getCraveableCategoryData(category);
+      if (!products.length) return;
+
       // Duplicate the set so centered loop always has enough slides for 3-up view.
-      const slides = [...list, ...list];
+      const slides = [...products, ...products];
       craveableWrapper.innerHTML = slides
-        .map((product) => craveableSlideMarkup(product, category))
+        .map((product) => craveableSlideMarkup(product, accent, burst))
         .join("");
 
       if (craveableSwiper) {
