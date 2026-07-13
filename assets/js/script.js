@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     };
 
-    const craveableSlideMarkup = (product, accent, burst) => `
+    const craveableSlideMarkup = (product, accent, burst, category) => `
       <div class="swiper-slide all-things-craveable__slide">
         <div class="all-things-craveable__product">
           ${
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
           />
           ${
             accent
-              ? `<div class="all-things-craveable__accent" aria-hidden="true">
+              ? `<div class="all-things-craveable__accent${category === "sweets" ? " all-things-craveable__accent--sweets" : ""}" aria-hidden="true">
             <img src="${accent}" alt="" />
           </div>`
               : ""
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Duplicate the set so centered loop always has enough slides for 3-up view.
       const slides = [...products, ...products];
       craveableWrapper.innerHTML = slides
-        .map((product) => craveableSlideMarkup(product, accent, burst))
+        .map((product) => craveableSlideMarkup(product, accent, burst, category))
         .join("");
 
       if (craveableSwiper) {

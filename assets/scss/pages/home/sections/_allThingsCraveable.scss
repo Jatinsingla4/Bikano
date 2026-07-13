@@ -468,6 +468,19 @@
       right: 8%;
       bottom: 2%;
     }
+
+    &--sweets {
+      width: 70%;
+      max-width: 150px;
+
+      @include tab {
+        max-width: 150px;
+      }
+
+      @include mobile {
+        max-width: 100px;
+      }
+    }
   }
 
   // Swiper prev / next — semi-circle edge buttons

@@ -1350,6 +1350,20 @@ img {
     bottom: 2%;
   }
 }
+.all-things-craveable__accent--sweets {
+  width: 70%;
+  max-width: 150px;
+}
+@media only screen and (max-width: 991px) {
+  .all-things-craveable__accent--sweets {
+    max-width: 150px;
+  }
+}
+@media only screen and (max-width: 563px) {
+  .all-things-craveable__accent--sweets {
+    max-width: 100px;
+  }
+}
 .all-things-craveable__nav-btn {
   position: absolute;
   top: 50%;
