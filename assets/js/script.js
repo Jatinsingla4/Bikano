@@ -199,16 +199,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return {
         products,
         accent: group.dataset.accent || "",
-        burst: group.dataset.burst || "./assets/images/Namkeen.png",
+        burst: group.dataset.burst || "",
       };
     };
 
     const craveableSlideMarkup = (product, accent, burst) => `
       <div class="swiper-slide all-things-craveable__slide">
         <div class="all-things-craveable__product">
-          <div class="all-things-craveable__burst" aria-hidden="true">
+          ${
+            burst
+              ? `<div class="all-things-craveable__burst" aria-hidden="true">
             <img src="${burst}" alt="" />
-          </div>
+          </div>`
+              : ""
+          }
           <img
             class="all-things-craveable__packet"
             src="${product.img}"
