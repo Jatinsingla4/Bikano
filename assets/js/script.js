@@ -344,9 +344,106 @@ document.addEventListener("DOMContentLoaded", () => {
       buzzWrapper.classList.add("is-animated");
     };
 
+    const setBuzzMarqueePaused = (paused) => {
+      buzzWrapper.classList.toggle("is-paused", paused);
+    };
+
+    const bindBuzzMarqueePause = () => {
+      const section = buzzSwiperEl.closest(".bikano-buzz");
+      const marquee = section && section.querySelector(".bikano-buzz__marquee");
+      if (!section || !marquee) return;
+
+      const pauseForReel = () => {
+        section.classList.add("is-reel-active");
+        setBuzzMarqueePaused(true);
+      };
+
+      const ensureCardCatches = () => {
+        // Coarse pointers can't rely on :hover; catch first tap, then let Instagram receive the next.
+        const isCoarse =
+          window.matchMedia && window.matchMedia("(hover: none), (pointer: coarse)").matches;
+        if (!isCoarse) return;
+
+        marquee.querySelectorAll(".bikano-buzz__card").forEach((card) => {
+          if (card.querySelector(".bikano-buzz__card-catch")) return;
+
+          const catcher = document.createElement("button");
+          catcher.type = "button";
+          catcher.className = "bikano-buzz__card-catch";
+          catcher.setAttribute("aria-label", "Play reel");
+          catcher.addEventListener(
+            "pointerdown",
+            (event) => {
+              event.preventDefault();
+              pauseForReel();
+              catcher.remove();
+            },
+            { once: true }
+          );
+          card.appendChild(catcher);
+        });
+      };
+
+      const resumeIfIdle = () => {
+        section.classList.remove("is-reel-active");
+        setBuzzMarqueePaused(false);
+        ensureCardCatches();
+      };
+
+      marquee.addEventListener("mouseenter", () => setBuzzMarqueePaused(true));
+      marquee.addEventListener("mouseleave", () => {
+        // Keep paused if a reel was activated; only clear hover pause.
+        if (section.classList.contains("is-reel-active")) {
+          setBuzzMarqueePaused(true);
+          return;
+        }
+        setBuzzMarqueePaused(false);
+      });
+
+      marquee.addEventListener(
+        "pointerdown",
+        (event) => {
+          if (!event.target.closest(".bikano-buzz__card")) return;
+          pauseForReel();
+        },
+        true
+      );
+
+      // Iframe focus (desktop + some mobile browsers) after Instagram embed loads
+      marquee.addEventListener("focusin", (event) => {
+        if (event.target.tagName !== "IFRAME") return;
+        pauseForReel();
+      });
+
+      window.addEventListener("blur", () => {
+        requestAnimationFrame(() => {
+          const active = document.activeElement;
+          if (active && active.tagName === "IFRAME" && marquee.contains(active)) {
+            pauseForReel();
+          }
+        });
+      });
+
+      document.addEventListener(
+        "pointerdown",
+        (event) => {
+          if (event.target.closest(".bikano-buzz__marquee")) return;
+          if (!section.classList.contains("is-reel-active")) return;
+          resumeIfIdle();
+        },
+        true
+      );
+
+      ensureCardCatches();
+      // Embeds inject iframes async — re-bind catchers after process
+      setTimeout(ensureCardCatches, 800);
+      setTimeout(ensureCardCatches, 2000);
+    };
+
     const initBuzzMarquee = () => {
       cloneBuzzSlides();
       processBuzzInstagramEmbeds();
+      bindBuzzMarqueePause();
       requestAnimationFrame(startBuzzMarquee);
     };
 

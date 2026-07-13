@@ -409,14 +409,15 @@
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.2));
-    transform: translateZ(24px);
+    transform: none;
     transition:
       filter 0.45s ease,
       transform 0.45s ease;
 
     .swiper-slide-active & {
       filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.26));
-      transform: translateZ(48px);
+      transform: rotate(12deg);
+      scale: 1.2;
     }
 
     @include tab {
@@ -430,12 +431,12 @@
     }
   }
 
-  // Tea / coffee / gulab — only on active slide, over packet bottom-right
+  // Tea / coffee / plate — only on active slide, over packet bottom-right
   &__accent {
     position: absolute;
     right: 12%;
     bottom: 4%;
-    z-index: 3;
+    z-index: 5;
     width: 32%;
     max-width: 96px;
     opacity: 0;

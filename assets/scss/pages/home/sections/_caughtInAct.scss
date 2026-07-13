@@ -44,8 +44,9 @@
     transition: all ease 0.5s;
     
     @include tab {
-      @include font-size(28px);
+      @include font-size(34px);
       line-height: 38px;
+      text-align: center;
     }
   }
   
@@ -62,7 +63,7 @@
 
     @include tab {
       display: block;
-      @include font-size(18px);
+      @include font-size(20px);
       line-height: 28px;
     }
   }
@@ -113,6 +114,7 @@
     @include mobile {
       @include font-size(14px, 22px);
       margin-top: 8px;
+      text-align: center;
     }
   }
 
