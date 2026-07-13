@@ -248,6 +248,19 @@
       border-radius: 8px;
     }
 
+    .instagram-media,
+    iframe.instagram-media,
+    blockquote.instagram-media {
+      margin: 0 !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      min-height: 100% !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
     @include tab {
       width: 180px;
       border-width: 5px;

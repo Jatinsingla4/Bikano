@@ -313,6 +313,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
+    const processBuzzInstagramEmbeds = () => {
+      if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === "function") {
+        window.instgrm.Embeds.process();
+      }
+    };
+
     const waitForBuzzImages = () => {
       const images = buzzSwiperEl.querySelectorAll("img");
       return Promise.all(
@@ -332,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const startBuzzMarquee = () => {
       const setWidth = buzzWrapper.scrollWidth / 2;
-      const duration = setWidth / BUZZ_SCROLL_SPEED;
+      const duration = Math.max(setWidth / BUZZ_SCROLL_SPEED, 20);
 
       buzzWrapper.style.setProperty("--marquee-duration", `${duration}s`);
       buzzWrapper.classList.add("is-animated");
@@ -340,10 +346,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const initBuzzMarquee = () => {
       cloneBuzzSlides();
+      processBuzzInstagramEmbeds();
       requestAnimationFrame(startBuzzMarquee);
     };
 
     waitForBuzzImages().then(initBuzzMarquee);
+
+    // Re-process embeds if Instagram script loads after our init.
+    window.addEventListener("load", processBuzzInstagramEmbeds);
   }
 
   if (typeof Fancybox !== "undefined") {

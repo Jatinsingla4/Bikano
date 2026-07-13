@@ -2585,6 +2585,18 @@ img {
      object-position: center;
   border-radius: 8px;
 }
+.bikano-buzz__card .instagram-media,
+.bikano-buzz__card iframe.instagram-media,
+.bikano-buzz__card blockquote.instagram-media {
+  margin: 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  min-height: 100% !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
 @media only screen and (max-width: 991px) {
   .bikano-buzz__card {
     width: 180px;
