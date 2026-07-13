@@ -57,6 +57,9 @@
     position: absolute;
     inset: 0;
     z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: rgba(0, 0, 0, 0.42);
     transition: opacity 0.6s ease, visibility 0.6s ease;
     pointer-events: none;
@@ -64,6 +67,24 @@
     &.is-hidden {
       opacity: 0;
       visibility: hidden;
+    }
+  }
+
+  &__title {
+    position: relative;
+    z-index: 1;
+    width: min(72%, 720px);
+    max-width: 720px;
+    height: auto;
+    display: block;
+    pointer-events: none;
+
+    @include tab {
+      width: min(78%, 520px);
+    }
+
+    @include mobile {
+      width: min(86%, 340px);
     }
   }
 }

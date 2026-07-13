@@ -41,21 +41,21 @@
     @include heading-style(80px, var(--red2));
     font-weight: 600;
     line-height: 90px;
-
+    transition: all ease 0.5s;
+    
     @include tab {
       @include font-size(28px);
       line-height: 38px;
     }
-
-   
   }
-
+  
   &__title-sub {
     anchor-name: --caught-title-sub;
     font-weight: 600;
     @include font-size(40px);
     color: var(--red2);
     line-height: 50px;
+    transition: all ease 0.5s;
     @include tab {
       @include font-size(24px);
     }
@@ -64,6 +64,21 @@
       display: block;
       @include font-size(18px);
       line-height: 28px;
+    }
+  }
+
+  @media (min-width: 1251px) and (max-width: 1400px) {
+    &__title {
+      font-size: 64px;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1250px) {
+    &__title {
+      font-size: 48px;
+    }
+    &__title-sub {
+      font-size: 28px;
     }
   }
 

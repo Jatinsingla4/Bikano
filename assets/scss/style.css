@@ -586,6 +586,9 @@ img {
   position: absolute;
   inset: 0;
   z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.42);
   transition: opacity 0.6s ease, visibility 0.6s ease;
   pointer-events: none;
@@ -593,6 +596,25 @@ img {
 .home-banner__overlay.is-hidden {
   opacity: 0;
   visibility: hidden;
+}
+.home-banner__title {
+  position: relative;
+  z-index: 1;
+  width: min(72%, 720px);
+  max-width: 720px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+@media only screen and (max-width: 991px) {
+  .home-banner__title {
+    width: min(78%, 520px);
+  }
+}
+@media only screen and (max-width: 563px) {
+  .home-banner__title {
+    width: min(86%, 340px);
+  }
 }
 
 .play-btn {
@@ -2019,6 +2041,7 @@ img {
   color: var(--red);
   font-weight: 600;
   line-height: 90px;
+  transition: all ease 0.5s;
 }
 @media only screen and (max-width: 991px) {
   .caught-in-act__title {
@@ -2034,6 +2057,7 @@ img {
   line-height: 1.2;
   color: var(--red2);
   line-height: 50px;
+  transition: all ease 0.5s;
 }
 @media only screen and (max-width: 991px) {
   .caught-in-act__title-sub {
@@ -2047,6 +2071,19 @@ img {
     font-size: 18px;
     line-height: 1.2;
     line-height: 28px;
+  }
+}
+@media (min-width: 1251px) and (max-width: 1400px) {
+  .caught-in-act__title {
+    font-size: 64px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1250px) {
+  .caught-in-act__title {
+    font-size: 48px;
+  }
+  .caught-in-act__title-sub {
+    font-size: 28px;
   }
 }
 .caught-in-act__spark {
