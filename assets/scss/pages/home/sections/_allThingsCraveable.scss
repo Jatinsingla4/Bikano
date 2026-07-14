@@ -183,7 +183,7 @@
     }
 
     @include mobile {
-      @include font-size(52px);
+      @include font-size(34px);
     }
   }
 
@@ -269,7 +269,6 @@
     }
 
     @include mobile {
-      width: 100%;
       justify-content: center;
       @include font-size(12px);
       padding: 12px 18px;

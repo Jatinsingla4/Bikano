@@ -306,8 +306,11 @@
 
     .rightGalleryImg {
       height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
       img {
         height: 100%;
+        object-fit: cover;
       }
     }
     .galleryclub {

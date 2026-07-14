@@ -535,6 +535,11 @@ img {
   overflow: hidden;
   background: var(--darkred);
 }
+@media only screen and (max-width: 991px) {
+  .home-banner {
+    height: 90vh;
+  }
+}
 .home-banner::before {
   content: "";
   position: absolute;
@@ -687,16 +692,16 @@ img {
 }
 
 .floating-actions {
-  position: absolute;
-  right: 28px;
-  bottom: 187px;
-  z-index: 6;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 50;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 10px 14px;
+  padding: 10px;
   border-radius: 999px;
-  background: rgba(40, 28, 22, 0.55);
+  background: rgba(40, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.55), inset -1.5px -1.5px 0 rgba(255, 255, 255, 0.22);
@@ -728,10 +733,6 @@ img {
   background: var(--red2);
 }
 @media only screen and (max-width: 991px) {
-  .floating-actions {
-    bottom: 50px;
-    right: 20px;
-  }
   .floating-actions__item {
     width: 42px;
     height: 42px;
@@ -790,7 +791,7 @@ img {
 }
 @media only screen and (max-width: 563px) {
   .certified-by__title {
-    font-size: 28px;
+    font-size: 34px;
     line-height: 1.2;
     text-shadow: 2px 2px 0 #FECE5A;
   }
@@ -1072,7 +1073,7 @@ img {
 }
 @media only screen and (max-width: 563px) {
   .all-things-craveable__title-main {
-    font-size: 52px;
+    font-size: 34px;
     line-height: 1.2;
   }
 }
@@ -1165,7 +1166,6 @@ img {
 }
 @media only screen and (max-width: 563px) {
   .all-things-craveable__cta {
-    width: 100%;
     justify-content: center;
     font-size: 12px;
     line-height: 1.2;
@@ -1739,9 +1739,13 @@ img {
 }
 .momentGallery .galleryRightClub .rightGalleryImg {
   height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 }
 .momentGallery .galleryRightClub .rightGalleryImg img {
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .momentGallery .galleryRightClub .galleryclub {
   display: flex;
@@ -1911,7 +1915,6 @@ img {
 }
 @media only screen and (max-width: 991px) {
   .houseBikano__btn {
-    width: 100%;
     justify-content: center;
     padding: 12px 20px;
     font-size: 16px;
