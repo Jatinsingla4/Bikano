@@ -559,6 +559,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tryLiveFeed();
 
+    // Some FeedPane reel videos/posters fail to load (expired CDN links).
+    // Remove that slide (and its marquee clones) instead of showing a blank card.
+    buzzWrapper.addEventListener(
+      "error",
+      (event) => {
+        const slide = event.target.closest(".bikano-buzz__slide");
+        if (slide) slide.remove();
+      },
+      true
+    );
+
     // Re-process embeds if Instagram script loads after our init.
     window.addEventListener("load", processBuzzInstagramEmbeds);
   }
