@@ -212,9 +212,6 @@
     border-radius: 999px;
     background: var(--white);
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-   @include lessTab{
-    max-width: 350px;
-   }
   }
 
   &__category {
@@ -502,8 +499,8 @@
 
     svg {
       display: block;
-      width: 14px;
-      height: 24px;
+      width: 22px;
+      height: 38px;
       flex-shrink: 0;
     }
 
@@ -526,6 +523,11 @@
     @include tab {
       width: 48px;
       height: 96px;
+
+      svg {
+        width: 18px;
+        height: 31px;
+      }
     }
 
     @include mobile {
@@ -533,8 +535,8 @@
       height: 80px;
 
       svg {
-        width: 11px;
-        height: 20px;
+        width: 15px;
+        height: 26px;
       }
     }
   }
