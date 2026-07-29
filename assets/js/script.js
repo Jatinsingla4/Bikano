@@ -301,16 +301,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const buzzSwiperEl = document.querySelector(".bikano-buzz__swiper");
+  const sociablekitContainer = document.querySelector(".bikano-buzz__sociablekit-demo");
 
   if (buzzSwiperEl) {
     const buzzWrapper = buzzSwiperEl.querySelector(".swiper-wrapper");
-    const buzzOriginalSlides = Array.from(buzzWrapper.children);
+    let buzzOriginalSlides = [];
     const BUZZ_SCROLL_SPEED = 90;
+    buzzWrapper.innerHTML = "";
 
     const cloneBuzzSlides = () => {
       buzzOriginalSlides.forEach((slide) => {
         buzzWrapper.appendChild(slide.cloneNode(true));
       });
+    };
+
+    const buildBuzzViewsBadge = (count) => {
+      const span = document.createElement("span");
+      span.className = "bikano-buzz__views";
+      span.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg>';
+      span.append(document.createTextNode(count));
+      return span;
+    };
+
+    const buildSociablekitSlide = (src, likes) => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide bikano-buzz__slide";
+      const article = document.createElement("article");
+      article.className = "bikano-buzz__card";
+      const img = document.createElement("img");
+      img.referrerPolicy = "no-referrer";
+      img.src = src;
+      img.alt = "Bikano reel";
+      article.appendChild(img);
+      if (likes) article.appendChild(buildBuzzViewsBadge(likes));
+      slide.appendChild(article);
+      return slide;
+    };
+
+    const getSociablekitPosts = () => {
+      if (!sociablekitContainer) return [];
+      return Array.from(
+        sociablekitContainer.querySelectorAll(".sk-instagram-reel")
+      )
+        .map((post) => {
+          const img = post.querySelector("img");
+          const src = img ? img.getAttribute("src") : "";
+          const likesEl = post.querySelector(
+            ".sk-instagram-reel__count .count"
+          );
+          const likes = likesEl ? likesEl.textContent.trim() : "";
+          return { src, likes };
+        })
+        .filter((post) => post.src);
     };
 
     const processBuzzInstagramEmbeds = () => {
@@ -321,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const waitForBuzzImages = () => {
       const images = buzzSwiperEl.querySelectorAll("img");
-      return Promise.all(
+      const loaded = Promise.all(
         Array.from(images).map(
           (img) =>
             new Promise((resolve) => {
@@ -334,6 +377,9 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         )
       );
+      // Some hotlinked images never fire load/error — don't block forever.
+      const timeout = new Promise((resolve) => setTimeout(resolve, 3000));
+      return Promise.race([loaded, timeout]);
     };
 
     const startBuzzMarquee = () => {
@@ -447,7 +493,22 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(startBuzzMarquee);
     };
 
-    waitForBuzzImages().then(initBuzzMarquee);
+    // Only the live SociableKit reels feed is shown (same card/marquee design) — no static fallback.
+    const trySociablekitFeed = () => {
+      const posts = getSociablekitPosts();
+      if (posts.length >= 2) {
+        buzzWrapper.innerHTML = "";
+        buzzOriginalSlides = posts.map((post) =>
+          buildSociablekitSlide(post.src, post.likes)
+        );
+        buzzOriginalSlides.forEach((slide) => buzzWrapper.appendChild(slide));
+        waitForBuzzImages().then(initBuzzMarquee);
+        return;
+      }
+      setTimeout(trySociablekitFeed, 400);
+    };
+
+    trySociablekitFeed();
 
     // Re-process embeds if Instagram script loads after our init.
     window.addEventListener("load", processBuzzInstagramEmbeds);
