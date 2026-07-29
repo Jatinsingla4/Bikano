@@ -302,6 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const buzzSwiperEl = document.querySelector(".bikano-buzz__swiper");
   const sociablekitContainer = document.querySelector(".bikano-buzz__sociablekit-demo");
+  const feedpaneContainer = document.querySelector(".bikano-buzz__feedpane-demo");
 
   if (buzzSwiperEl) {
     const buzzWrapper = buzzSwiperEl.querySelector(".swiper-wrapper");
@@ -354,6 +355,43 @@ document.addEventListener("DOMContentLoaded", () => {
           return { src, likes };
         })
         .filter((post) => post.src);
+    };
+
+    const buildFeedpaneVideoSlide = (videoSrc, poster, likes) => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide bikano-buzz__slide";
+      const article = document.createElement("article");
+      article.className = "bikano-buzz__card";
+      const video = document.createElement("video");
+      video.src = videoSrc;
+      video.poster = poster;
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("preload", "auto");
+      article.appendChild(video);
+      if (likes) article.appendChild(buildBuzzViewsBadge(likes));
+      slide.appendChild(article);
+      return slide;
+    };
+
+    const getFeedpaneVideoPosts = () => {
+      if (!feedpaneContainer) return [];
+      return Array.from(feedpaneContainer.querySelectorAll(".fp-post"))
+        .map((post) => {
+          const video = post.querySelector("video");
+          if (!video) return null;
+          const videoSrc = video.getAttribute("src") || "";
+          const poster = video.getAttribute("poster") || "";
+          const likesEl = post.querySelector(".fp-likes");
+          const likes = likesEl
+            ? likesEl.textContent.replace(/[^\d,]/g, "").trim()
+            : "";
+          return { videoSrc, poster, likes };
+        })
+        .filter((post) => post && post.videoSrc);
     };
 
     const processBuzzInstagramEmbeds = () => {
@@ -490,11 +528,22 @@ document.addEventListener("DOMContentLoaded", () => {
       cloneBuzzSlides();
       processBuzzInstagramEmbeds();
       bindBuzzMarqueePause();
-      requestAnimationFrame(startBuzzMarquee);
+      startBuzzMarquee();
     };
 
-    // Only the live SociableKit reels feed is shown (same card/marquee design) — no static fallback.
-    const trySociablekitFeed = () => {
+    // Prefer FeedPane's autoplaying reel videos; fall back to SociableKit's
+    // static thumbnails if no video posts are available. No static fallback.
+    const tryLiveFeed = () => {
+      const videoPosts = getFeedpaneVideoPosts();
+      if (videoPosts.length >= 2) {
+        buzzWrapper.innerHTML = "";
+        buzzOriginalSlides = videoPosts.map((post) =>
+          buildFeedpaneVideoSlide(post.videoSrc, post.poster, post.likes)
+        );
+        buzzOriginalSlides.forEach((slide) => buzzWrapper.appendChild(slide));
+        waitForBuzzImages().then(initBuzzMarquee);
+        return;
+      }
       const posts = getSociablekitPosts();
       if (posts.length >= 2) {
         buzzWrapper.innerHTML = "";
@@ -505,10 +554,10 @@ document.addEventListener("DOMContentLoaded", () => {
         waitForBuzzImages().then(initBuzzMarquee);
         return;
       }
-      setTimeout(trySociablekitFeed, 400);
+      setTimeout(tryLiveFeed, 400);
     };
 
-    trySociablekitFeed();
+    tryLiveFeed();
 
     // Re-process embeds if Instagram script loads after our init.
     window.addEventListener("load", processBuzzInstagramEmbeds);

@@ -248,7 +248,8 @@
     border: 4px solid var(--white);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
 
-    img {
+    img,
+    video {
       display: block;
       width: 100%;
       height: 100%;
@@ -327,7 +328,8 @@
   }
 }
 
-.bikano-buzz__sociablekit-demo {
+.bikano-buzz__sociablekit-demo,
+.bikano-buzz__feedpane-demo {
   position: absolute;
   width: 1px;
   height: 1px;

@@ -2638,7 +2638,8 @@ img {
   border: 4px solid var(--white);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
 }
-.bikano-buzz__card img {
+.bikano-buzz__card img,
+.bikano-buzz__card video {
   display: block;
   width: 100%;
   height: 100%;
@@ -2717,7 +2718,8 @@ img {
   }
 }
 
-.bikano-buzz__sociablekit-demo {
+.bikano-buzz__sociablekit-demo,
+.bikano-buzz__feedpane-demo {
   position: absolute;
   width: 1px;
   height: 1px;
