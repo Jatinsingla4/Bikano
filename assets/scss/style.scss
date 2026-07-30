@@ -42,6 +42,21 @@ img {
   max-width: 100%;
 }
 
+// Defensive reset: the live PHP site's shared css/style.css + css/app.css apply
+// bare-tag rules (main { margin-top: -120px }, section { float: left }, etc.)
+// sitewide. These two are the only bare tags our markup doesn't already
+// override via a class, so they'd otherwise bleed into this design when
+// deployed inside homepage.php. Harmless no-ops on the standalone static site.
+main {
+  margin-top: 0;
+  min-height: 0;
+  background: none;
+}
+
+section {
+  float: none;
+}
+
 @import './globals/header';
 @import './globals/footer';
 @import './pages/home/home';
