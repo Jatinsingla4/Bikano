@@ -794,27 +794,6 @@ section {
     height: 40px;
   }
 }
-.certified-by__fade {
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  width: 12%;
-  height: 100%;
-  pointer-events: none;
-}
-.certified-by__fade--left {
-  left: 0;
-  background: linear-gradient(to right, var(--certified-bg) 0%, rgba(250, 245, 228, 0.6) 50%, transparent 100%);
-}
-.certified-by__fade--right {
-  right: 0;
-  background: linear-gradient(to left, var(--certified-bg) 0%, rgba(250, 245, 228, 0.6) 50%, transparent 100%);
-}
-@media only screen and (max-width: 563px) {
-  .certified-by__fade {
-    width: 16%;
-  }
-}
 
 @keyframes certified-marquee-scroll {
   from {
