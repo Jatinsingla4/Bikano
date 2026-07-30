@@ -23,10 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const certifiedSwiperEl = document.querySelector(".certified-by__swiper");
 
   if (certifiedSwiperEl) {
-    const marqueeEl = certifiedSwiperEl.closest(".certified-by__marquee");
     const wrapper = certifiedSwiperEl.querySelector(".swiper-wrapper");
     const originalSlides = Array.from(wrapper.children);
-    let blurFrameId = null;
     const SCROLL_SPEED = 55;
 
     const cloneSlidesForLoop = () => {
@@ -52,45 +50,16 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     };
 
-    const applyEdgeBlur = () => {
-      if (!marqueeEl) return;
-
-      const containerRect = marqueeEl.getBoundingClientRect();
-      const fadeZone = containerRect.width * 0.1;
-      const maxBlur = 5;
-
-      certifiedSwiperEl.querySelectorAll(".certified-by__slide img").forEach((img) => {
-        const rect = img.getBoundingClientRect();
-
-        if (rect.width < 8 || rect.height < 8) {
-          img.style.filter = "none";
-          return;
-        }
-
-        const slideCenter = rect.left + rect.width / 2;
-        const distFromLeft = slideCenter - containerRect.left;
-        const distFromRight = containerRect.right - slideCenter;
-        let blur = 0;
-
-        if (distFromLeft < fadeZone) {
-          blur = (1 - distFromLeft / fadeZone) * maxBlur;
-        } else if (distFromRight < fadeZone) {
-          blur = (1 - distFromRight / fadeZone) * maxBlur;
-        }
-
-        img.style.filter = blur > 0.2 ? `blur(${blur.toFixed(2)}px)` : "none";
-      });
-
-      blurFrameId = requestAnimationFrame(applyEdgeBlur);
-    };
-
+    // Edge fade is handled entirely by the .certified-by__fade CSS gradient
+    // overlays — no JS blur here. A per-frame getBoundingClientRect + filter
+    // loop over every slide, forever, was fighting the compositor-driven CSS
+    // marquee animation for main-thread time and causing intermittent stutter.
     const startMarquee = () => {
       const setWidth = wrapper.scrollWidth / 2;
       const duration = setWidth / SCROLL_SPEED;
 
       wrapper.style.setProperty("--marquee-duration", `${duration}s`);
       wrapper.classList.add("is-animated");
-      applyEdgeBlur();
     };
 
     const initCertifiedMarquee = () => {
@@ -102,10 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     waitForImages().then(initCertifiedMarquee);
-
-    window.addEventListener("beforeunload", () => {
-      if (blurFrameId) cancelAnimationFrame(blurFrameId);
-    });
   }
 
   const craveableSwiperEl = document.querySelector(".all-things-craveable__swiper");
