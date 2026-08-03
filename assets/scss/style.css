@@ -77,6 +77,7 @@ main {
 
 section {
   float: none;
+  background: none;
 }
 
 .header {
@@ -358,6 +359,8 @@ section {
   align-items: center;
   gap: 12px;
 }
+.footer__contact a:link,
+.footer__contact a:visited,
 .footer__contact a {
   color: var(--white);
   font-weight: 400;
@@ -482,6 +485,8 @@ section {
   flex-direction: column;
   gap: 10px;
 }
+.footer__links-group a:link,
+.footer__links-group a:visited,
 .footer__links-group a {
   color: var(--white);
   font-weight: 400;
@@ -1026,6 +1031,8 @@ section {
   background: var(--white);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
+.all-things-craveable__category:link,
+.all-things-craveable__category:visited,
 .all-things-craveable__category {
   font-weight: 500;
   font-size: 14px;
@@ -1051,6 +1058,8 @@ section {
     padding: 6px 10px;
   }
 }
+.all-things-craveable__cta:link,
+.all-things-craveable__cta:visited,
 .all-things-craveable__cta {
   font-weight: 700;
   font-size: 14px;
@@ -1800,6 +1809,8 @@ section {
     margin-top: -12px;
   }
 }
+.houseBikano__btn:link,
+.houseBikano__btn:visited,
 .houseBikano__btn {
   font-weight: 700;
   font-size: 20px;
