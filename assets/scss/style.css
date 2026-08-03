@@ -1071,6 +1071,8 @@ section {
   color: var(--atc-red);
 }
 @media only screen and (max-width: 563px) {
+  .all-things-craveable__category:link,
+  .all-things-craveable__category:visited,
   .all-things-craveable__category {
     font-size: 11px;
     line-height: 1.2;
@@ -1078,16 +1080,21 @@ section {
     flex-shrink: 0;
   }
 }
+@media only screen and (max-width: 480px) {
+  .all-things-craveable__categories {
+    padding: 8px 8px;
+  }
+  .all-things-craveable__category:link,
+  .all-things-craveable__category:visited,
+  .all-things-craveable__category {
+    font-size: 9px;
+    padding: 5px 6px;
+    letter-spacing: 0.02em;
+  }
+}
 @media only screen and (max-width: 767px) {
   .all-things-craveable__categories {
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
     max-width: calc(100vw - 48px);
-  }
-  .all-things-craveable__categories::-webkit-scrollbar {
-    display: none;
   }
 }
 .all-things-craveable__cta:link,
