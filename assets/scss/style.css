@@ -2320,17 +2320,21 @@ section {
   margin-top: 22px;
 }
 .caught-in-act__pagination .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
+  /* app.css's `.swiper-pagination-bullet { width/height/border-radius: ... !important }`
+     is a sitewide legacy rule meant for another slider; matching !important here
+     (with our higher two-class specificity) is the only way to beat it. */
+  width: 10px !important;
+  height: 10px !important;
   margin: 0 !important;
-  border-radius: 50%;
+  border-radius: 50% !important;
   background: transparent;
   border: 1.5px solid var(--red2);
   opacity: 1;
   transition: background 0.25s ease, transform 0.25s ease;
 }
 .caught-in-act__pagination .swiper-pagination-bullet-active {
-  background: var(--red2);
+  /* app.css sets `background: var(--green) !important` here too. */
+  background: var(--red2) !important;
   transform: scale(1.05);
 }
 @media only screen and (max-width: 563px) {
