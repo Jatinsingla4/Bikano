@@ -95,6 +95,9 @@ section {
 .caught-in-act__nav svg path {
   fill: var(--red);
 }
+.caught-in-act__play svg path {
+  fill: var(--white);
+}
 
 .header {
   position: absolute;
