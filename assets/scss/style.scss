@@ -58,6 +58,16 @@ section {
   background: none;
 }
 
+// Legacy sitewide css/style.css has a bare `path { fill: lightgray; stroke: white; }`
+// rule that overrides every inline SVG icon's fill/stroke="currentColor" or hardcoded
+// hex color (CSS always wins over presentation attributes). `revert` restores each
+// path to its un-stylesheeted behavior, i.e. the actual fill/stroke attribute in the
+// markup, without needing to hunt down and fix every single icon individually.
+main path {
+  fill: revert;
+  stroke: revert;
+}
+
 @import './globals/header';
 @import './globals/footer';
 @import './pages/home/home';
