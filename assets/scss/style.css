@@ -82,12 +82,18 @@ section {
 
 /* Legacy sitewide css/style.css has a bare `path { fill: lightgray; stroke: white; }`
    rule that overrides every inline SVG icon's fill/stroke="currentColor" or hardcoded
-   hex color (CSS always wins over presentation attributes). `revert` restores each
-   path to its un-stylesheeted behavior, i.e. the actual fill/stroke attribute in the
-   markup, without needing to hunt down and fix every single icon individually. */
-main path {
-  fill: revert;
-  stroke: revert;
+   hex color (CSS always wins over presentation attributes, and `revert` goes past the
+   attribute to the UA default instead of restoring it, so it's not usable here).
+   Re-declaring the originally-intended value per icon group beats the legacy rule's
+   low (0,0,1) specificity. */
+.caught-in-act__feature svg path {
+  stroke: currentColor;
+}
+.all-things-craveable__nav-btn svg path {
+  fill: currentColor;
+}
+.caught-in-act__nav svg path {
+  fill: var(--red);
 }
 
 .header {
