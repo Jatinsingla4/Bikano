@@ -42,6 +42,41 @@ img {
   max-width: 100%;
 }
 
+// Defensive reset: the live PHP site's shared css/style.css + css/app.css apply
+// bare-tag rules (main { margin-top: -120px }, section { float: left }, etc.)
+// sitewide. These two are the only bare tags our markup doesn't already
+// override via a class, so they'd otherwise bleed into this design when
+// deployed inside homepage.php. Harmless no-ops on the standalone static site.
+main {
+  margin-top: 0;
+  min-height: 0;
+  background: none;
+}
+
+section {
+  float: none;
+  background: none;
+}
+
+// Legacy sitewide css/style.css has a bare `path { fill: lightgray; stroke: white; }`
+// rule that overrides every inline SVG icon's fill/stroke="currentColor" or hardcoded
+// hex color (CSS always wins over presentation attributes, and `revert` goes past the
+// attribute to the UA default instead of restoring it, so it's not usable here).
+// Re-declaring the originally-intended value per icon group beats the legacy rule's
+// low (0,0,1) specificity.
+.caught-in-act__feature svg path {
+  stroke: currentColor;
+}
+.all-things-craveable__nav-btn svg path {
+  fill: currentColor;
+}
+.caught-in-act__nav svg path {
+  fill: var(--red);
+}
+.caught-in-act__play svg path {
+  fill: var(--white);
+}
+
 @import './globals/header';
 @import './globals/footer';
 @import './pages/home/home';

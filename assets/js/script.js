@@ -1,10 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".header__toggle");
   const nav = document.querySelector(".header__nav");
-  const playBtn = document.getElementById("playBtn");
-  const overlay = document.getElementById("bannerOverlay");
-  const video = document.getElementById("bannerVideo");
-  const banner = document.querySelector(".home-banner");
 
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
@@ -24,72 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (playBtn && overlay && video && banner) {
-    let idleTimer = null;
-    const IDLE_DELAY = 1000;
-
-    video.pause();
-
-    const setPlayingState = (isPlaying) => {
-      overlay.classList.toggle("is-hidden", isPlaying);
-      playBtn.classList.toggle("is-playing", isPlaying);
-      playBtn.setAttribute("aria-pressed", String(isPlaying));
-      playBtn.setAttribute("aria-label", isPlaying ? "Pause video" : "Play video");
-
-      if (isPlaying) {
-        showControlsTemporarily();
-      } else {
-        clearTimeout(idleTimer);
-        banner.classList.remove("is-controls-hidden");
-      }
-    };
-
-    const hideControls = () => {
-      if (!video.paused) {
-        banner.classList.add("is-controls-hidden");
-      }
-    };
-
-    const showControlsTemporarily = () => {
-      banner.classList.remove("is-controls-hidden");
-      clearTimeout(idleTimer);
-
-      if (!video.paused) {
-        idleTimer = setTimeout(hideControls, IDLE_DELAY);
-      }
-    };
-
-    const toggleVideo = () => {
-      if (video.paused) {
-        video.play().then(() => setPlayingState(true)).catch(() => {});
-      } else {
-        video.pause();
-        setPlayingState(false);
-      }
-    };
-
-    banner.addEventListener("click", (e) => {
-      if (e.target.closest(".floating-actions") || e.target.closest(".header")) return;
-      toggleVideo();
-    });
-
-    banner.addEventListener("mousemove", () => {
-      if (!video.paused) {
-        showControlsTemporarily();
-      }
-    });
-
-    video.addEventListener("play", () => setPlayingState(true));
-    video.addEventListener("pause", () => setPlayingState(false));
-  }
-
   const certifiedSwiperEl = document.querySelector(".certified-by__swiper");
 
   if (certifiedSwiperEl) {
-    const marqueeEl = certifiedSwiperEl.closest(".certified-by__marquee");
     const wrapper = certifiedSwiperEl.querySelector(".swiper-wrapper");
     const originalSlides = Array.from(wrapper.children);
-    let blurFrameId = null;
     const SCROLL_SPEED = 55;
 
     const cloneSlidesForLoop = () => {
@@ -115,45 +50,16 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     };
 
-    const applyEdgeBlur = () => {
-      if (!marqueeEl) return;
-
-      const containerRect = marqueeEl.getBoundingClientRect();
-      const fadeZone = containerRect.width * 0.1;
-      const maxBlur = 5;
-
-      certifiedSwiperEl.querySelectorAll(".certified-by__slide img").forEach((img) => {
-        const rect = img.getBoundingClientRect();
-
-        if (rect.width < 8 || rect.height < 8) {
-          img.style.filter = "none";
-          return;
-        }
-
-        const slideCenter = rect.left + rect.width / 2;
-        const distFromLeft = slideCenter - containerRect.left;
-        const distFromRight = containerRect.right - slideCenter;
-        let blur = 0;
-
-        if (distFromLeft < fadeZone) {
-          blur = (1 - distFromLeft / fadeZone) * maxBlur;
-        } else if (distFromRight < fadeZone) {
-          blur = (1 - distFromRight / fadeZone) * maxBlur;
-        }
-
-        img.style.filter = blur > 0.2 ? `blur(${blur.toFixed(2)}px)` : "none";
-      });
-
-      blurFrameId = requestAnimationFrame(applyEdgeBlur);
-    };
-
+    // Edge fade is handled entirely by the .certified-by__fade CSS gradient
+    // overlays — no JS blur here. A per-frame getBoundingClientRect + filter
+    // loop over every slide, forever, was fighting the compositor-driven CSS
+    // marquee animation for main-thread time and causing intermittent stutter.
     const startMarquee = () => {
       const setWidth = wrapper.scrollWidth / 2;
       const duration = setWidth / SCROLL_SPEED;
 
       wrapper.style.setProperty("--marquee-duration", `${duration}s`);
       wrapper.classList.add("is-animated");
-      applyEdgeBlur();
     };
 
     const initCertifiedMarquee = () => {
@@ -165,10 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     waitForImages().then(initCertifiedMarquee);
-
-    window.addEventListener("beforeunload", () => {
-      if (blurFrameId) cancelAnimationFrame(blurFrameId);
-    });
   }
 
   const craveableSwiperEl = document.querySelector(".all-things-craveable__swiper");
@@ -301,16 +203,97 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const buzzSwiperEl = document.querySelector(".bikano-buzz__swiper");
+  const sociablekitContainer = document.querySelector(".bikano-buzz__sociablekit-demo");
+  const feedpaneContainer = document.querySelector(".bikano-buzz__feedpane-demo");
 
   if (buzzSwiperEl) {
     const buzzWrapper = buzzSwiperEl.querySelector(".swiper-wrapper");
-    const buzzOriginalSlides = Array.from(buzzWrapper.children);
+    let buzzOriginalSlides = [];
     const BUZZ_SCROLL_SPEED = 90;
+    buzzWrapper.innerHTML = "";
 
     const cloneBuzzSlides = () => {
       buzzOriginalSlides.forEach((slide) => {
         buzzWrapper.appendChild(slide.cloneNode(true));
       });
+    };
+
+    const buildBuzzViewsBadge = (count) => {
+      const span = document.createElement("span");
+      span.className = "bikano-buzz__views";
+      span.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg>';
+      span.append(document.createTextNode(count));
+      return span;
+    };
+
+    const buildSociablekitSlide = (src, likes) => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide bikano-buzz__slide";
+      const article = document.createElement("article");
+      article.className = "bikano-buzz__card";
+      const img = document.createElement("img");
+      img.referrerPolicy = "no-referrer";
+      img.src = src;
+      img.alt = "Bikano reel";
+      article.appendChild(img);
+      if (likes) article.appendChild(buildBuzzViewsBadge(likes));
+      slide.appendChild(article);
+      return slide;
+    };
+
+    const getSociablekitPosts = () => {
+      if (!sociablekitContainer) return [];
+      return Array.from(
+        sociablekitContainer.querySelectorAll(".sk-instagram-reel")
+      )
+        .map((post) => {
+          const img = post.querySelector("img");
+          const src = img ? img.getAttribute("src") : "";
+          const likesEl = post.querySelector(
+            ".sk-instagram-reel__count .count"
+          );
+          const likes = likesEl ? likesEl.textContent.trim() : "";
+          return { src, likes };
+        })
+        .filter((post) => post.src);
+    };
+
+    const buildFeedpaneVideoSlide = (videoSrc, poster, likes) => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide bikano-buzz__slide";
+      const article = document.createElement("article");
+      article.className = "bikano-buzz__card";
+      const video = document.createElement("video");
+      video.src = videoSrc;
+      video.poster = poster;
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("preload", "auto");
+      article.appendChild(video);
+      if (likes) article.appendChild(buildBuzzViewsBadge(likes));
+      slide.appendChild(article);
+      return slide;
+    };
+
+    const getFeedpaneVideoPosts = () => {
+      if (!feedpaneContainer) return [];
+      return Array.from(feedpaneContainer.querySelectorAll(".fp-post"))
+        .map((post) => {
+          const video = post.querySelector("video");
+          if (!video) return null;
+          const videoSrc = video.getAttribute("src") || "";
+          const poster = video.getAttribute("poster") || "";
+          const likesEl = post.querySelector(".fp-likes");
+          const likes = likesEl
+            ? likesEl.textContent.replace(/[^\d,]/g, "").trim()
+            : "";
+          return { videoSrc, poster, likes };
+        })
+        .filter((post) => post && post.videoSrc);
     };
 
     const processBuzzInstagramEmbeds = () => {
@@ -321,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const waitForBuzzImages = () => {
       const images = buzzSwiperEl.querySelectorAll("img");
-      return Promise.all(
+      const loaded = Promise.all(
         Array.from(images).map(
           (img) =>
             new Promise((resolve) => {
@@ -334,6 +317,9 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         )
       );
+      // Some hotlinked images never fire load/error — don't block forever.
+      const timeout = new Promise((resolve) => setTimeout(resolve, 3000));
+      return Promise.race([loaded, timeout]);
     };
 
     const startBuzzMarquee = () => {
@@ -444,10 +430,47 @@ document.addEventListener("DOMContentLoaded", () => {
       cloneBuzzSlides();
       processBuzzInstagramEmbeds();
       bindBuzzMarqueePause();
-      requestAnimationFrame(startBuzzMarquee);
+      startBuzzMarquee();
     };
 
-    waitForBuzzImages().then(initBuzzMarquee);
+    // Prefer FeedPane's autoplaying reel videos; fall back to SociableKit's
+    // static thumbnails if no video posts are available. No static fallback.
+    const tryLiveFeed = () => {
+      const videoPosts = getFeedpaneVideoPosts();
+      if (videoPosts.length >= 2) {
+        buzzWrapper.innerHTML = "";
+        buzzOriginalSlides = videoPosts.map((post) =>
+          buildFeedpaneVideoSlide(post.videoSrc, post.poster, post.likes)
+        );
+        buzzOriginalSlides.forEach((slide) => buzzWrapper.appendChild(slide));
+        waitForBuzzImages().then(initBuzzMarquee);
+        return;
+      }
+      const posts = getSociablekitPosts();
+      if (posts.length >= 2) {
+        buzzWrapper.innerHTML = "";
+        buzzOriginalSlides = posts.map((post) =>
+          buildSociablekitSlide(post.src, post.likes)
+        );
+        buzzOriginalSlides.forEach((slide) => buzzWrapper.appendChild(slide));
+        waitForBuzzImages().then(initBuzzMarquee);
+        return;
+      }
+      setTimeout(tryLiveFeed, 400);
+    };
+
+    tryLiveFeed();
+
+    // Some FeedPane reel videos/posters fail to load (expired CDN links).
+    // Remove that slide (and its marquee clones) instead of showing a blank card.
+    buzzWrapper.addEventListener(
+      "error",
+      (event) => {
+        const slide = event.target.closest(".bikano-buzz__slide");
+        if (slide) slide.remove();
+      },
+      true
+    );
 
     // Re-process embeds if Instagram script loads after our init.
     window.addEventListener("load", processBuzzInstagramEmbeds);

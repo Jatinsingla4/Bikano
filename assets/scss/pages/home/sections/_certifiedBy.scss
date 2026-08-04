@@ -59,26 +59,32 @@
       display: flex;
       align-items: center;
       width: max-content;
-      gap: 64px;
       will-change: transform;
-
-      @include tab {
-        gap: 48px;
-      }
-
-      @include mobile {
-        gap: 36px;
-      }
 
       &.is-animated {
         animation: certified-marquee-scroll var(--marquee-duration, 40s) linear infinite;
       }
     }
 
+    // margin-right (not flex `gap`) so every slide, including the last one in
+    // each cloned set, carries its own trailing space. `gap` only applies
+    // between items, so 2x N slides = 2N-1 gaps (not evenly halvable) — that
+    // off-by-half-a-gap made the JS's `scrollWidth / 2` loop point land short,
+    // producing a visible snap every cycle. Per-slide margin keeps the total
+    // width exactly 2x one set, so the -50% loop point is exact.
     .swiper-slide {
       width: auto !important;
       height: auto;
       flex-shrink: 0;
+      margin-right: 64px;
+
+      @include tab {
+        margin-right: 48px;
+      }
+
+      @include mobile {
+        margin-right: 36px;
+      }
     }
   }
 

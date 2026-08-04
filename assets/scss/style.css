@@ -69,6 +69,36 @@ img {
   max-width: 100%;
 }
 
+main {
+  margin-top: 0;
+  min-height: 0;
+  background: none;
+}
+
+section {
+  float: none;
+  background: none;
+}
+
+/* Legacy sitewide css/style.css has a bare `path { fill: lightgray; stroke: white; }`
+   rule that overrides every inline SVG icon's fill/stroke="currentColor" or hardcoded
+   hex color (CSS always wins over presentation attributes, and `revert` goes past the
+   attribute to the UA default instead of restoring it, so it's not usable here).
+   Re-declaring the originally-intended value per icon group beats the legacy rule's
+   low (0,0,1) specificity. */
+.caught-in-act__feature svg path {
+  stroke: currentColor;
+}
+.all-things-craveable__nav-btn svg path {
+  fill: currentColor;
+}
+.caught-in-act__nav svg path {
+  fill: var(--red);
+}
+.caught-in-act__play svg path {
+  fill: var(--white);
+}
+
 .header {
   position: absolute;
   top: 0;
@@ -348,6 +378,8 @@ img {
   align-items: center;
   gap: 12px;
 }
+.footer__contact a:link,
+.footer__contact a:visited,
 .footer__contact a {
   color: var(--white);
   font-weight: 400;
@@ -472,6 +504,8 @@ img {
   flex-direction: column;
   gap: 10px;
 }
+.footer__links-group a:link,
+.footer__links-group a:visited,
 .footer__links-group a {
   color: var(--white);
   font-weight: 400;
@@ -598,10 +632,6 @@ img {
   transition: opacity 0.6s ease, visibility 0.6s ease;
   pointer-events: none;
 }
-.home-banner__overlay.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-}
 .home-banner__title {
   position: relative;
   z-index: 1;
@@ -620,75 +650,6 @@ img {
   .home-banner__title {
     width: min(86%, 340px);
   }
-}
-
-.play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 5;
-  transform: translate(-50%, -50%);
-  width: 92px;
-  height: 92px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(80, 55, 40, 0.35);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  box-shadow: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.65), inset -1.5px -1.5px 0 rgba(255, 255, 255, 0.28);
-  transition: transform 0.3s ease, background 0.3s ease, opacity 0.35s ease;
-}
-.play-btn img {
-  width: 22px;
-  height: auto;
-  margin-left: 4px;
-  display: block;
-  transition: opacity 0.25s ease;
-}
-.play-btn.is-playing {
-  opacity: 0.85;
-}
-.play-btn.is-playing img {
-  opacity: 0;
-}
-.play-btn.is-playing::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 22px;
-  border-left: 5px solid var(--white);
-  border-right: 5px solid var(--white);
-}
-.play-btn:hover {
-  transform: translate(-50%, -50%) scale(1.06);
-  background: rgba(80, 55, 40, 0.58);
-}
-@media only screen and (max-width: 991px) {
-  .play-btn {
-    width: 78px;
-    height: 78px;
-  }
-  .play-btn img {
-    width: 18px;
-  }
-}
-@media only screen and (max-width: 563px) {
-  .play-btn {
-    width: 68px;
-    height: 68px;
-  }
-  .play-btn img {
-    width: 15px;
-  }
-}
-
-.home-banner.is-controls-hidden .play-btn.is-playing {
-  opacity: 0;
-  pointer-events: none;
 }
 
 .floating-actions {
@@ -811,18 +772,7 @@ img {
   align-items: center;
   width: -moz-max-content;
   width: max-content;
-  gap: 64px;
   will-change: transform;
-}
-@media only screen and (max-width: 991px) {
-  .certified-by__swiper .swiper-wrapper {
-    gap: 48px;
-  }
-}
-@media only screen and (max-width: 563px) {
-  .certified-by__swiper .swiper-wrapper {
-    gap: 36px;
-  }
 }
 .certified-by__swiper .swiper-wrapper.is-animated {
   animation: certified-marquee-scroll var(--marquee-duration, 40s) linear infinite;
@@ -831,6 +781,17 @@ img {
   width: auto !important;
   height: auto;
   flex-shrink: 0;
+  margin-right: 64px;
+}
+@media only screen and (max-width: 991px) {
+  .certified-by__swiper .swiper-slide {
+    margin-right: 48px;
+  }
+}
+@media only screen and (max-width: 563px) {
+  .certified-by__swiper .swiper-slide {
+    margin-right: 36px;
+  }
 }
 .certified-by__slide {
   display: flex;
@@ -855,27 +816,6 @@ img {
 @media only screen and (max-width: 563px) {
   .certified-by__slide img {
     height: 40px;
-  }
-}
-.certified-by__fade {
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  width: 12%;
-  height: 100%;
-  pointer-events: none;
-}
-.certified-by__fade--left {
-  left: 0;
-  background: linear-gradient(to right, var(--certified-bg) 0%, rgba(250, 245, 228, 0.6) 50%, transparent 100%);
-}
-.certified-by__fade--right {
-  right: 0;
-  background: linear-gradient(to left, var(--certified-bg) 0%, rgba(250, 245, 228, 0.6) 50%, transparent 100%);
-}
-@media only screen and (max-width: 563px) {
-  .certified-by__fade {
-    width: 16%;
   }
 }
 
@@ -1110,11 +1050,8 @@ img {
   background: var(--white);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
-@media only screen and (max-width: 767px) {
-  .all-things-craveable__categories {
-    max-width: 350px;
-  }
-}
+.all-things-craveable__category:link,
+.all-things-craveable__category:visited,
 .all-things-craveable__category {
   font-weight: 500;
   font-size: 14px;
@@ -1134,12 +1071,34 @@ img {
   color: var(--atc-red);
 }
 @media only screen and (max-width: 563px) {
+  .all-things-craveable__category:link,
+  .all-things-craveable__category:visited,
   .all-things-craveable__category {
     font-size: 11px;
     line-height: 1.2;
     padding: 6px 10px;
+    flex-shrink: 0;
   }
 }
+@media only screen and (max-width: 480px) {
+  .all-things-craveable__categories {
+    padding: 8px 8px;
+  }
+  .all-things-craveable__category:link,
+  .all-things-craveable__category:visited,
+  .all-things-craveable__category {
+    font-size: 9px;
+    padding: 5px 6px;
+    letter-spacing: 0.02em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .all-things-craveable__categories {
+    max-width: calc(100vw - 48px);
+  }
+}
+.all-things-craveable__cta:link,
+.all-things-craveable__cta:visited,
 .all-things-craveable__cta {
   font-weight: 700;
   font-size: 14px;
@@ -1383,8 +1342,8 @@ img {
 }
 .all-things-craveable__nav-btn svg {
   display: block;
-  width: 14px;
-  height: 24px;
+  width: 22px;
+  height: 38px;
   flex-shrink: 0;
 }
 .all-things-craveable__nav-btn--prev {
@@ -1405,6 +1364,10 @@ img {
     width: 48px;
     height: 96px;
   }
+  .all-things-craveable__nav-btn svg {
+    width: 18px;
+    height: 31px;
+  }
 }
 @media only screen and (max-width: 563px) {
   .all-things-craveable__nav-btn {
@@ -1412,8 +1375,8 @@ img {
     height: 80px;
   }
   .all-things-craveable__nav-btn svg {
-    width: 11px;
-    height: 20px;
+    width: 15px;
+    height: 26px;
   }
 }
 
@@ -1885,6 +1848,8 @@ img {
     margin-top: -12px;
   }
 }
+.houseBikano__btn:link,
+.houseBikano__btn:visited,
 .houseBikano__btn {
   font-weight: 700;
   font-size: 20px;
@@ -2337,7 +2302,7 @@ img {
 }
 @media only screen and (max-width: 767px) {
   .caught-in-act__nav--prev {
-    left: -8px;
+    left: -20px;
   }
 }
 .caught-in-act__nav--next {
@@ -2355,7 +2320,7 @@ img {
 }
 @media only screen and (max-width: 767px) {
   .caught-in-act__nav--next {
-    right: -8px;
+    right: -20px;
   }
 }
 .caught-in-act__nav.swiper-button-disabled {
@@ -2375,17 +2340,21 @@ img {
   margin-top: 22px;
 }
 .caught-in-act__pagination .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
+  /* app.css's `.swiper-pagination-bullet { width/height/border-radius: ... !important }`
+     is a sitewide legacy rule meant for another slider; matching !important here
+     (with our higher two-class specificity) is the only way to beat it. */
+  width: 10px !important;
+  height: 10px !important;
   margin: 0 !important;
-  border-radius: 50%;
+  border-radius: 50% !important;
   background: transparent;
   border: 1.5px solid var(--red2);
   opacity: 1;
   transition: background 0.25s ease, transform 0.25s ease;
 }
 .caught-in-act__pagination .swiper-pagination-bullet-active {
-  background: var(--red2);
+  /* app.css sets `background: var(--green) !important` here too. */
+  background: var(--red2) !important;
   transform: scale(1.05);
 }
 @media only screen and (max-width: 563px) {
@@ -2638,7 +2607,8 @@ img {
   border: 4px solid var(--white);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
 }
-.bikano-buzz__card img {
+.bikano-buzz__card img,
+.bikano-buzz__card video {
   display: block;
   width: 100%;
   height: 100%;
@@ -2715,4 +2685,14 @@ img {
   to {
     transform: translate3d(-50%, 0, 0);
   }
+}
+
+.bikano-buzz__sociablekit-demo,
+.bikano-buzz__feedpane-demo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
